@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "mongoose": "^8.15.0"
+    "mongoose": "^8.15.0",
+    "mysql2": "^3.14.1"
   }
 }
