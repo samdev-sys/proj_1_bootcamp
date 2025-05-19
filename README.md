@@ -5,3 +5,4 @@
 <p>Frontend:Html, css, Javascript, Materialize css</p>
 <p>Backend: Javascript,NodeJS</p>
 <p>modelo de base de datos a utilizar : por definir</p>
+<p>se hace propuesta de conexion a BD </p>
