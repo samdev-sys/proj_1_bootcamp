@@ -6,3 +6,4 @@
 <p>Backend: Javascript,NodeJS</p>
 <p>modelo de base de datos a utilizar : por definir</p>
 <p>se hace propuesta de conexion a BD </p>
+<p>se propone conexion a MySQL</p>
