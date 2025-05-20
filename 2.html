@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../Frontend/img/WhatsApp Image 2025-05-08 at 6.23.43 PM.jpeg" type="image/x-icon">
     <!-- Materialize CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <!-- Íconos de Google (opcional, pero recomendado) -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -31,30 +32,55 @@
         <h1> REGISTRAR USUARIO</h1>
        
         <label for="" class="txt">Nombres</label>
-        <input type="text">
+        <input type="text" id="Nombres" name="nombres">
         <br>
-        <label for="" style="font-family: roboto;">Sube tu foto </label>
+        <label for="" style="color: azure; font-family:Roboto Mono, monospace;">Sube tu foto </label>
         <input type="file" name="foto">
         <br>
         <label for="" class="txt">Usuario</label>
         <input type="text">
         <br>
-        <label for="" class="">Email</label>
+        <label for="" class="txt">Email</label>
         <input type="email">
-        <br>
+        <br> 
         <label for="" class="txt">Contraseña</label>
         <input type="password">
+        <a href="" style="font: size 10px;">puedes usar nuestro generador de contraseñas</a>
         <br>
-        <label for="" class="txt">pregunta de seguridad</label>
-        <input type="">
-        <label for=""class>Respuesta</label>
-        <input type="text">
 
-    </div>  
-    <div class="boton">
-        <input class="but" type="submit" value="Registrar">
+       <div class="input-field">
+     <select name="pregunta" id="pregunta">
+    <option value="" disabled selected style="color: aquamarine; font-family: Roboto Mono, monospace;">Seleccione una pregunta</option>
+    <option value="madre">¿Nombre de tu madre?</option>
+    <option value="mascota">¿Nombre de tu primera mascota?</option>
+    <option value="escuela">¿Nombre de tu escuela primaria?</option>
+    <option value="ciudad">¿En qué ciudad naciste?</option>
+    </select>
+    <label for="pregunta">Pregunta de seguridad</label>
     </div>
-    </form>
+     <label for="" class="txt">Respuesta</label>
+     <input type="text">
+
+    
+     </div>  
+     <div class="container">
+        <input class="but" type="submit" value="Registrar">
+     </div>
+    
  </div>
+ </form>
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems);
+  });
+</script>
+
 </body>
 </html>
+
+

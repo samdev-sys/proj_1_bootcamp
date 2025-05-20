@@ -26,8 +26,7 @@
     justify-content: center;
 }
 .txt{
-    text-decoration: none;
-    color: azure;
+    
 }
 p{
     font-family: var(--font1);
@@ -65,7 +64,7 @@ h1{
 .txt{
     font-family: var(--font2);
     color: var(--color1);
-    font-size: 8 px;
+    font-size:30px;
 }
 .principal{
     display: flex;

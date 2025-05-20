@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Navegación</title>
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="./Frontend/styles.css" />
-  <link rel="shortcut icon" href="../Frontend/img/WhatsApp Image 2025-05-08 at 6.23.43 PM.jpeg" type="image/x-icon" />
+  <link rel="shortcut icon" href="./Frontend/img/WhatsApp Image 2025-05-08 at 6.23.43 PM.jpeg" type="image/x-icon" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <title>Document</title>
+
   <style>
     body {
-      background-image: url('/Frontend/img/55448.png');
+      background-image: url('./Frontend/img/55448.png');
       background-repeat: no-repeat;
       background-size: cover;
       font-family: sans-serif;
@@ -19,21 +22,53 @@
 </head>
 <body>
 
+  <!-- Navegación -->
   <header class="cabecera">
-    <nav class="cyan">
-      
-    </nav>
+    <!-- <nav class="cyan">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo" style="margin-left: 20px;">Mi App</a>
+
+        <!-- Botones en el nav -->
+        <ul class="right">
+          <li><a class="btn white black-text" href="#login">Login</a></li>
+          <li><a class="btn-flat white-text" href="#registro">Registro</a></li>
+        </ul>
+
+        <!-- Icono menú para dispositivos móviles -->
+        <a href="#" data-target="slide-out" class="sidenav-trigger right">
+          <i class="material-icons">menu</i>
+        </a>
+      </div>
+    </nav> -->
   </header>
 
+  <!-- Menú lateral -->
+  <ul id="slide-out" class="sidenav">
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <img src="./Frontend/img/office.jpg" alt="fondo usuario">
+        </div>
+        <a href="#user"><img class="circle" src="./Frontend/img/yuna.jpg" alt="usuario"></a>
+        <a href="#name"><span class="white-text name">John Doe</span></a>
+        <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+      </div>
+    </li>
+    <li><a href="#!"><i class="material-icons">cloud</i>Primer enlace</a></li>
+    <li><a href="#!">Segundo enlace</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Subtítulo</a></li>
+    <li><a class="waves-effect" href="#!">Tercer enlace</a></li>
+  </ul>
 
-
+  <!-- Scripts de Materialize -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      M.Modal.init(document.querySelectorAll('.modal'));
-      // Elimina la línea siguiente si no tienes sidenav
-      // M.Sidenav.init(document.querySelectorAll('.sidenav'));
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
     });
   </script>
+
 </body>
 </html>
