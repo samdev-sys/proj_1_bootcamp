@@ -3,7 +3,9 @@ const crypto =require('crypto');
 const  conexion=require('./db');
 const enviarCorreoRec=require('./sendemail');
 
+
 const router= express.Router();
+app.use(express.json());
 
 router.post('/forgot-password',async(req, res) =>{
     const { username, password}=req.body;
@@ -30,3 +32,18 @@ router.post('/login', async (req, res) => {
         res.json({ message: 'Login exitoso', token });
     });
 });
+
+router.post('/forgot-password', (req,res)=>{
+    const {email}= req.body;
+    const token = crypto.randomBytes(20).toString('hex');
+
+    conexion.query('UPDATE users SET reset token =? WHERE email = ?', [token, email],(err) =>{
+        if (err) return res.status(500).json({message:"Error al generar token"});
+    
+    enviarCorreoRec(email,token);
+    res.json({message:"Correo de recuperacion enviado"})
+});
+});
+
+
+
