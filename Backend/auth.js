@@ -2,11 +2,14 @@ const express =require ('express');
 const crypto =require('crypto');
 const  conexion=require('./db');
 const enviarCorreoRec=require('./sendemail');
+const {exec} = require("child_process");
+const { error } = require('console');
 
 
 const router= express.Router();
+const app = express();
 app.use(express.json());
-
+// creacion de contraseña
 router.post('/forgot-password',async(req, res) =>{
     const { username, password}=req.body;
     const hasherPassword = await bcrypt.hash(password, 10);
@@ -32,7 +35,7 @@ router.post('/login', async (req, res) => {
         res.json({ message: 'Login exitoso', token });
     });
 });
-
+// recuperacion de contraseña
 router.post('/forgot-password', (req,res)=>{
     const {email}= req.body;
     const token = crypto.randomBytes(20).toString('hex');
@@ -44,6 +47,14 @@ router.post('/forgot-password', (req,res)=>{
     res.json({message:"Correo de recuperacion enviado"})
 });
 });
+// conexion con passgen.py
+app.get("/generar-contraseña", (req, res) => {
+    const length = req.query.length || 12; // Obtiene la longitud desde el frontend
+    exec(`python passgen.py ${length}`, (error, stdout) => {
+        if (error) return res.status(500).json({ error: "Error al ejecutar Python" });
+        res.json({ password: stdout.trim() });
+    });
+});
 
-
+app.listen(3000, () => console.log("Servidor corriendo en el puerto 3000"));
 

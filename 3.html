@@ -17,49 +17,72 @@
       background-repeat: no-repeat;
       background-size: cover;
       font-family: sans-serif;
+      background-attachment: fixed;
     }
   </style>
 </head>
 <body>
-
-  <!-- Navegación -->
-  <header class="cabecera">
-    <!-- <nav class="cyan">
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo" style="margin-left: 20px;">Mi App</a>
-
-        <!-- Botones en el nav -->
-        <ul class="right">
-          <li><a class="btn white black-text" href="#login">Login</a></li>
-          <li><a class="btn-flat white-text" href="#registro">Registro</a></li>
-        </ul>
-
-        <!-- Icono menú para dispositivos móviles -->
-        <a href="#" data-target="slide-out" class="sidenav-trigger right">
-          <i class="material-icons">menu</i>
-        </a>
+<nav>
+    <div class="nav-wrapper green accent-4  ">
+      <a href="#" class="brand-logo">001APP</a>
+      <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Contacto</a></li>
+      <div class="but">
+      <button> cerrar sesion</button>
       </div>
-    </nav> -->
-  </header>
+      </ul>
+     
+    </div>
+  </nav>
 
-  <!-- Menú lateral -->
-  <ul id="slide-out" class="sidenav">
-    <li>
-      <div class="user-view">
-        <div class="background">
-          <img src="./Frontend/img/office.jpg" alt="fondo usuario">
-        </div>
-        <a href="#user"><img class="circle" src="./Frontend/img/yuna.jpg" alt="usuario"></a>
-        <a href="#name"><span class="white-text name">John Doe</span></a>
-        <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-      </div>
-    </li>
-    <li><a href="#!"><i class="material-icons">cloud</i>Primer enlace</a></li>
-    <li><a href="#!">Segundo enlace</a></li>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">Subtítulo</a></li>
-    <li><a class="waves-effect" href="#!">Tercer enlace</a></li>
+  <!-- Sidenav -->
+  <ul class="sidenav" id="mobile-menu">
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Servicios</a></li>
+    <li><a href="#">Contacto</a></li>
   </ul>
+  <table class="striped bordered highlight centered responsive-table">
+  <thead>
+    <tr>
+      <th>Actividad</th>
+      <th>Estado</th>
+      <th>Progreso</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Diseño de página web</td>
+      <td>En proceso</td>
+      <td>
+        <div class="progress">
+          <div class="determinate" style="width: 60%;"></div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Revisión de contenido</td>
+      <td>Completado</td>
+      <td>
+        <div class="progress">
+          <div class="determinate" style="width: 100%;"></div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Pruebas de funcionalidad</td>
+      <td>Pendiente</td>
+      <td>
+        <div class="progress">
+          <div class="determinate" style="width: 20%;"></div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 
   <!-- Scripts de Materialize -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
