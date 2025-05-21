@@ -20,12 +20,59 @@
       background-repeat: no-repeat;
       background-size: cover;
       font-family: sans-serif;
+      background-attachment: fixed;
     }
 
         
     </style>
 </head>
 <body >
+  <header>
+    <nav class="blue darken-1">
+<div class="nav-wrapper">
+      
+     
+  <a class="waves-effect waves-light btn modal-trigger  indigo darken-2" href="#modal1">Iniciar</a>
+      
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal" style="background-color: rgb(7, 51, 51); border: 2px solid azure; border-radius: 8px;">
+    <div class="modal-content">
+      <div class="container" >
+  <div class="row" >
+    <form class="col s12">
+       <div class="form">      
+        <div class="row">
+       <h1>Iniciar Sesion</h1>
+        <div class="input-field col s6">
+          <input placeholder="user" id="usernameLog" type="text" class="validate">
+          <label for="user"></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="passwordLog" type="password" class="validate" placeholder="password">
+          <label for="password"></label>
+        </div>
+      </div>
+      
+      <div>
+        <a href="/recupera.html">Ha olvidado su contraseña?</a>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit" name="action"><a href="/3.html" style="text-decoration: none; color: aliceblue;">iniciar</a><i class="material-icons right">account_circle</i>
+      </button>
+    </div>  
+    </form>
+    <script src="/Backend/login.js"></script>
+  </div>
+</div> 
+</div>
+   
+  </div>
+          
+    </div>
+    </nav>
+  </header>
 
     <div class="slider">
     <ul class="slides">
@@ -47,7 +94,7 @@
         <img src="/Frontend/img/WhatsApp Image 2025-05-08 at 6.23.44 PM.jpeg"> <!-- random image -->
         <div class="caption right-align">
           <h3><p>Obtenga una cuenta gratis para comprobar la potencia de la IA 001APP</p></h3>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+          <h5 class="light grey-text text-lighten-3"><a href="/2.html" class="txt">haga clic en este enlace</a></h5>
         </div>
       </li>
       <li>
@@ -68,43 +115,67 @@
         <span class="white-text">I am a very simple card. I am good at containing small bits of information.
         I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
         </span>
-         <button class="btn waves-effect waves-light" type="submit" name="action"><a href="/2.html">acerca de</a>
-        <i class="material-icons right">input</i>
+         <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Obtener</a>
+        <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <div class="container" id="">
+    <form action="" method="post">
+        <h1> REGISTRAR USUARIO</h1>
+       
+        <label for="" class="txt">Nombres</label>
+        <input type="text" id="Nombres" name="nombres">
+        <br>
+        <label for="" style="color: azure; font-family:Roboto Mono, monospace;">Sube tu foto </label>
+        <input type="file" name="foto">
+        <br>
+        <label for="" class="txt">Usuario</label>
+        <input type="text">
+        <br>
+        <label for="" class="txt">Email</label>
+        <input type="email">
+        <br> 
+        <label for="" class="txt">Contraseña</label>
+        <input type="password">
+        <!-- Botón para abrir el modal -->
+        <a href="http://localhost:8501" target="_blank">puedes usar nuestro generador de contraseñas</a>
+
+
+        <br>
+
+       <div class="input-field">
+     <select name="pregunta" id="pregunta">
+    <option value="" disabled selected style="color: aquamarine; font-family: Roboto Mono, monospace;">Seleccione una pregunta</option>
+    <option value="madre">¿Nombre de tu madre?</option>
+    <option value="mascota">¿Nombre de tu primera mascota?</option>
+    <option value="escuela">¿Nombre de tu escuela primaria?</option>
+    <option value="ciudad">¿En qué ciudad naciste?</option>
+    </select>
+    <label for="pregunta">Pregunta de seguridad</label>
+    </div>
+     <label for="" class="txt">Respuesta</label>
+     <input type="text">
+
+    
+     </div>  
+     <div class="container">
+        <input class="but" type="submit" value="Registrar">
+     </div>
+    
+ </div>
+ </form>
+
+
+    </div>
+   
+  </div>
       </button>
       </div>
     </div>
   </div>
 </div>
    
- <div class="container">
-  <div class="row">
-    <form class="col s12">
-       <div class="form">      
-        <div class="row">
-       <h1>Iniciar Sesion</h1>
-        <div class="input-field col s6">
-          <input placeholder="user" id="usernameLog" type="text" class="validate">
-          <label for="user"></label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="passwordLog" class="validate" placeholder="password">
-          <label for="password"></label>
-        </div>
-      </div>
-      
-      <div>
-        <a href="/recupera.html">Ha olvidado su contraseña?</a>
-      </div>
-      <button class="btn waves-effect waves-light" type="submit" name="action"><a href="/3.html" style="text-decoration: none; color: aliceblue;">iniciar</a>
-        <i class="material-icons right">account_circle</i>
-      </button>
-    </div>  
-    </form>
-    <script src="/Backend/login.js"></script>
-  </div>
-</div> 
+
   
 
 
@@ -119,6 +190,18 @@
     var elems = document.querySelectorAll('.slider');
     var instances = M.Slider.init(elems, {});
   });
+
+   document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, {});
+  });
+  
+    document.getElementById("generatePass").addEventListener("click", async () => {
+        const response = await fetch("http://localhost:3000/generar-contraseña");
+        const data = await response.json();
+        document.getElementById("passwordResult").textContent = `Contraseña generada: ${data.password}`;
+    });
+
   </script>
 
 <footer class="footer">
