@@ -6,14 +6,14 @@
   <title>Panel de Navegación</title>
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="./Frontend/styles.css" />
-  <link rel="shortcut icon" href="./Frontend/img/WhatsApp Image 2025-05-08 at 6.23.43 PM.jpeg" type="image/x-icon" />
+  <link rel="stylesheet" href="/Frontend/styles.css" />
+  <link rel="shortcut icon" href="/Frontend/img/WhatsApp Image 2025-05-08 at 6.23.43 PM.jpeg" type="image/x-icon" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
   <style>
     body {
-      background-image: url('./Frontend/img/55448.png');
+      background-image: url('/Frontend/img/55448.png');
       background-repeat: no-repeat;
       background-size: cover;
       font-family: sans-serif;
@@ -28,7 +28,7 @@
       <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Inicio</a></li>
-        <li><a href="#">Servicios</a></li>
+        <li><a href="/Frontend/1.html">APPS</a></li>
         <li><a href="#">Contacto</a></li>
       <div class="but">
       <button> cerrar sesion</button>
@@ -38,12 +38,8 @@
     </div>
   </nav>
 
-  <!-- Sidenav -->
-  <ul class="sidenav" id="mobile-menu">
-    <li><a href="#">Inicio</a></li>
-    <li><a href="#">Servicios</a></li>
-    <li><a href="#">Contacto</a></li>
-  </ul>
+ 
+ 
   <table class="striped bordered highlight centered responsive-table">
   <thead>
     <tr>
@@ -82,6 +78,14 @@
     </tr>
   </tbody>
 </table>
+<form id="urlForm">
+  <label for="urls">Introduce una URL:</label>
+  <input type="text" id="urlInput" />
+  <button type="button" onclick="saveUrl()">Guardar URL</button>
+</form>
+
+<div id="iconsContainer"></div>
+
 
 
   <!-- Scripts de Materialize -->
@@ -91,6 +95,28 @@
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
     });
+
+
+    // integracion con flask-python
+ function fetchUrls() {
+  fetch("http://127.0.0.1:5000/get_urls")
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById("iconsContainer");
+      container.innerHTML = data.urls.length ? "" : "<p>No hay URLs guardadas.</p>";
+
+      data.urls.forEach(url => {
+        const link = document.createElement("a");
+        link.href = url;
+        link.target = "_blank";
+        link.innerHTML = `<img src="https://www.google.com/s2/favicons?domain=${url}" alt="icono">`;
+        container.appendChild(link);
+      });
+    })
+    .catch(error => console.error("Error al obtener URLs:", error));
+}
+
+
   </script>
 
 </body>
