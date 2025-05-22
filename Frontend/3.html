@@ -22,102 +22,135 @@
   </style>
 </head>
 <body>
-<nav class="nav">
-    <div class="nav-wrapper green accent-4  ">
-      <a href="#" class="brand-logo">001APP</a>
-      <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="/Frontend/1.html">APPS</a></li>
-        <li><a href="#">Contacto</a></li>
-      <div class="but">
-      <button> cerrar sesion</button>
-      </div>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-wrapper green accent-4">
+      <a href="#" class="brand-logo">Taskflow</a>
+      <ul class="right">
+        <li><a href="/Frontend/1.html"><img src="/Frontend/img/icons8-menú-cuadrado-96.png" alt="apps" height="65"></a></li>
+        <li><a href="/index.html"><img src="/Frontend/img/icons8-salida.gif" alt="salir"></a></li>
       </ul>
-     
     </div>
   </nav>
 
- 
- 
+  <!-- TABLA DE ACTIVIDADES -->
   <table class="striped bordered highlight centered responsive-table">
-  <thead>
-    <tr>
-      <th>Actividad</th>
-      <th>Estado</th>
-      <th>Progreso</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Diseño de página web</td>
-      <td>En proceso</td>
-      <td>
-        <div class="progress">
-          <div class="determinate" style="width: 60%;"></div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>Revisión de contenido</td>
-      <td>Completado</td>
-      <td>
-        <div class="progress">
-          <div class="determinate" style="width: 100%;"></div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>Pruebas de funcionalidad</td>
-      <td>Pendiente</td>
-      <td>
-        <div class="progress">
-          <div class="determinate" style="width: 20%;"></div>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<form id="urlForm">
-  <label for="urls">Introduce una URL:</label>
-  <input type="text" id="urlInput" />
-  <button type="button" onclick="saveUrl()">Guardar URL</button>
-</form>
+    <thead>
+      <tr>
+        <th>Actividad</th>
+        <th>Estado</th>
+        <th>Progreso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Diseño de página web</td>
+        <td>En proceso</td>
+        <td>
+          <div class="progress">
+            <div class="determinate" style="width: 60%;"></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Revisión de contenido</td>
+        <td>Completado</td>
+        <td>
+          <div class="progress">
+            <div class="determinate" style="width: 100%;"></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Pruebas de funcionalidad</td>
+        <td>Pendiente</td>
+        <td>
+          <div class="progress">
+            <div class="determinate" style="width: 20%;"></div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<div id="iconsContainer"></div>
+  <!-- FORMULARIO PARA GUARDAR URL -->
+  <form id="urlForm">
+    <label for="urlInput" class="txt">Introduce una URL:</label>
+    <input type="url" id="urlInput" required />
+    <button type="button" id="saveUrlBtn" style="border-radius:4px; color:rgb(14, 11, 17); background-color:rgb(43, 226, 73)">Guardar URL</button>
+  </form>
 
+  <!-- CONTENEDOR DE ICONOS -->
+  <h1>Mis enlaces guardados</h1>
+  <div id="iconsContainer"></div>
 
-
-  <!-- Scripts de Materialize -->
+  <!-- SCRIPTS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
-    // document.addEventListener('DOMContentLoaded', function () {
-    //   var elems = document.querySelectorAll('.sidenav');
-    //   M.Sidenav.init(elems);
-    // });
+    // Guardar nueva URL
+    function saveUrl() {
+      const url = document.getElementById("urlInput").value.trim();
+      if (url) {
+        let urls = JSON.parse(localStorage.getItem("urls")) || [];
+        urls.push(url);
+        localStorage.setItem("urls", JSON.stringify(urls));
+        displayUrls();
+        document.getElementById("urlInput").value = ""; // limpiar campo
+      }
+    }
 
-
-    // integracion con flask-python
- function fetchUrls() {
-  fetch("http://127.0.0.1:5000/get_urls")
-    .then(response => response.json())
-    .then(data => {
+    // Mostrar URLs guardadas
+    function displayUrls() {
+      let urls = JSON.parse(localStorage.getItem("urls")) || [];
       const container = document.getElementById("iconsContainer");
-      container.innerHTML = data.urls.length ? "" : "<p>No hay URLs guardadas.</p>";
+      container.innerHTML = "";
 
-      data.urls.forEach(url => {
-        const link = document.createElement("a");
-        link.href = url;
-        link.target = "_blank";
-        link.innerHTML = `<img src="https://www.google.com/s2/favicons?domain=${url}" alt="icono">`;
-        container.appendChild(link);
-      });
-    })
-    .catch(error => console.error("Error al obtener URLs:", error));
-}
+      urls.forEach(url => {
+        try {
+    const domain = new URL(url).hostname;  // extrae solo el dominio
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
 
+    // asegúrate de usar comillas correctamente
+    const img = document.createElement("img");
+    img.src = `https://www.google.com/s2/favicons?domain=${domain}`;
+    img.alt = "icono";
+    img.style.margin = "30px";
 
+    link.appendChild(img);
+    container.appendChild(link);
+  } catch (e) {
+    console.error("URL inválida:", url);
+  }
+});
+    }
+
+    // Opcional: traer desde Flask backend
+    function fetchUrls() {
+      fetch("http://127.0.0.1:5000/get_urls")
+        .then(response => response.json())
+        .then(data => {
+          const container = document.getElementById("iconsContainer");
+          container.innerHTML = data.urls.length ? "" : "<p>No hay URLs guardadas.</p>";
+
+          data.urls.forEach(url => {
+            const link = document.createElement("a");
+            link.href = url;
+            link.target = "_blank";
+            link.innerHTML = `<img src="https://www.google.com/s2/favicons?domain=${url}" alt="icono">`;
+            container.appendChild(link);
+          });
+        })
+        .catch(error => console.error("Error al obtener URLs:", error));
+    }
+
+    // Inicialización al cargar la página
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("saveUrlBtn").addEventListener("click", saveUrl);
+      displayUrls(); // o fetchUrls(); si estás usando Flask
+    });
   </script>
-
 </body>
 </html>
