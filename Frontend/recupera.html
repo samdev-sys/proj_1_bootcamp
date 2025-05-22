@@ -12,11 +12,57 @@
     <title>Recuperar Contraseña</title>
 </head>
 <body>
-    <form action="POST">
-        <label for="" class="txt">Ingrese se E-mail, donde se le enviara enlace de recuperacion</label>
+    <style>
+    body {
+      background-image: url('/Frontend/img/55448.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family: sans-serif;
+      background-attachment: fixed;
+    }
+
+        
+    </style>
+   <form action="" method="post">
+        <h1> REGISTRAR USUARIO</h1>
+       
+        <label for="" class="txt">Nombres</label>
+        <input type="text" id="Nombres" name="nombres">
+        <br>
+        <label for="" style="color: azure; font-family:Roboto Mono, monospace;">Sube tu foto </label>
+        <input type="file" name="foto">
+        <br>
+        <label for="" class="txt">Usuario</label>
+        <input type="text">
+        <br>
+        <label for="" class="txt">Email</label>
         <input type="email">
-        <div class="container">
-        <input class="but" type="submit" value="Enviar">
+        <br> 
+        <label for="" class="txt">Contraseña</label>
+        <input type="password">
+        <!-- Botón para abrir el modal -->
+<a href="http://localhost:8501" target="_blank">puedes usar nuestro generador de contraseñas</a>
+
+
+        <br>
+
+       <div class="input-field">
+     <select name="pregunta" id="pregunta">
+    <option value="" disabled selected style="color: aquamarine; font-family: Roboto Mono, monospace;">Seleccione una pregunta</option>
+    <option value="madre">¿Nombre de tu madre?</option>
+    <option value="mascota">¿Nombre de tu primera mascota?</option>
+    <option value="escuela">¿Nombre de tu escuela primaria?</option>
+    <option value="ciudad">¿En qué ciudad naciste?</option>
+    </select>
+    <label for="pregunta">Pregunta de seguridad</label>
+    </div>
+     <label for="" class="txt">Respuesta</label>
+     <input type="text">
+
+    
+     </div>  
+     <div class="container">
+        <input class="but" type="submit" value="Registrar">
      </div>
     
     </form>
