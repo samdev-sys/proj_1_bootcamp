@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
-    <link rel="shortcut icon" href="Frontend/img/WhatsApp Image 2025-05-08 at 6.23.43 PM.jpeg" type="image/x-icon"> 
+    <link rel="shortcut icon" href="Frontend/img/ChatGPT Image 22 may 2025, 08_43_12 p.m_logo..png" type="image/x-icon"> 
     <!-- Materialize CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
 
@@ -33,31 +33,34 @@
       <div id="modal1" class="modal" style="background-color: rgb(7, 51, 51); border: 2px solid azure; border-radius: 8px;">
     <div class="modal-content">
       <div class="container" >
-  <div class="row" >
-    <form class="col s12">
-       <div class="form">      
-        <div class="row">
-       <h1>Iniciar Sesion</h1>
+<div class="row">
+  <form class="col s12" onsubmit="iniciarSesion(event)">
+    <div class="form">      
+      <div class="row">
+        <h1>Iniciar Sesión</h1>
         <div class="input-field col s6">
-          <input placeholder="user" id="usernameLog" type="text" class="validate">
-          <label for="user"></label>
+          <input placeholder="Usuario" id="usernameLog" type="text" class="validate">
+          <label for="usernameLog">Usuario</label>
         </div>
       </div>
+
       <div class="row">
         <div class="input-field col s12">
-          <input id="passwordLog" type="password" class="validate" placeholder="password">
-          <label for="password"></label>
+          <input id="passwordLog" type="password" class="validate" placeholder="Contraseña">
+          <label for="passwordLog">Contraseña</label>
         </div>
       </div>
+
       <div>
-        <a href="/Frontend/recupera.html">Ha olvidado su contraseña?</a>
+        <a href="/Frontend/recupera.html">¿Ha olvidado su contraseña?</a>
       </div>
-      <button class="btn waves-effect waves-light  blue darken-1"  type="submit" name="action" style=" border:2px ; border: radius 8px;"><a href="/Frontend/3.html" style="text-decoration: none; color: aliceblue;">iniciar</a>
+
+      <button id="btn_inicioSesion" class="btn waves-effect waves-light blue darken-1" type="submit" style="border-radius: 8px;">
+        <a href="/Frontend/3.html">Iniciar</a>
       </button>
     </div>  
-    </form>
-    <script src="/Backend/login.js"></script>
-  </div>
+  </form>
+</div>
 </div> 
 </div>
    
@@ -77,17 +80,15 @@
         </div>
       </li>
       <li>
-        <img src="/Frontend/img/1001514293.png"> <!-- random image -->
+        <img src="/Frontend/img/ChatGPT Image 22 may 2025, 08_29_43 p.m._texto.png .png"> <!-- random image -->
         <div class="caption left-align">
-          <h3><p style="color: rgb(9, 77, 202);">Con TaskFlow sus proyectos estaran en linea siempre conectados</p></h3>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
         </div>
       </li>
       <li>
         <img src="/Frontend/img/WhatsApp Image 2025-05-08 at 6.23.45 PM (2).jpeg"> <!-- random image -->
         <div class="caption right-align">
           <h3><p>Obtenga una cuenta gratis para comprobar la potencia de TaskFlow</p></h3>
-          <h5 class="light grey-text text-lighten-3"><a href="/2.html" class="txt">haga clic en este enlace</a></h5>
+          <h5 class="light grey-text text-lighten-3"><a href="/2.html"style="color: azure; font-family:roboto;">Haga clic en este enlace</a></h5>
         </div>
       </li>
       <li>
