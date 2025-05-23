@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel de Navegación</title>
+  <title>taskFlow</title>
 
   <!-- Estilos -->
   <link rel="stylesheet" href="/Frontend/styles.css" />
-  <link rel="shortcut icon" href="/Frontend/img/WhatsApp Image 2025-05-08 at 6.23.43 PM.jpeg" type="image/x-icon" />
+  <link rel="shortcut icon" href="/Frontend/img/ChatGPT Image 22 may 2025, 08_43_12 p.m_logo..png" type="image/x-icon" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
@@ -29,7 +29,19 @@
       <a href="#" class="brand-logo">Taskflow</a>
       <ul class="right">
         <li><a href="/Frontend/1.html"><img src="/Frontend/img/icons8-menú-cuadrado-96.png" alt="apps" height="65"></a></li>
-        <li><a href="/index.html"><img src="/Frontend/img/icons8-salida.gif" alt="salir"></a></li>
+        <li><img src="/Frontend/img/icons8-salida.gif" alt=""onclick="abrirModal()">
+
+    <div id="confirmacionModal" class="modal" style="background: rgba(9, 80, 64, 0.8);
+            border-radius: 10px;">
+        <div class="modal-content">
+            <h4>¿Seguro que deseas cerrar sesión?</h4>
+            <p style="font-size: 20px; color:aliceblue">Si cierras sesión, tendrás que volver a ingresar tus credenciales.</p>
+        </div>
+        
+            <button class="btn green" onclick="cerrarSesion()">Sí, cerrar sesión</button>
+            <button class="btn grey" onclick="cerrarModal()">Cancelar</button>
+        
+    </div></li>
       </ul>
     </div>
   </nav>
@@ -76,18 +88,20 @@
 
   <!-- FORMULARIO PARA GUARDAR URL -->
   <form id="urlForm">
-    <label for="urlInput" class="txt">Introduce una URL:</label>
+    <label for="urlInput" class="txt">Introduce URLs para acceso rapido</label>
     <input type="url" id="urlInput" required />
     <button type="button" id="saveUrlBtn" style="border-radius:4px; color:rgb(14, 11, 17); background-color:rgb(43, 226, 73)">Guardar URL</button>
+  <script src=""></script>
   </form>
 
   <!-- CONTENEDOR DE ICONOS -->
-  <h1>Mis enlaces guardados</h1>
+  <h1 style=" font-size: 30px; color: rgb(49, 87, 6);">Mis enlaces guardados</h1>
   <div id="iconsContainer"></div>
 
   <!-- SCRIPTS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
+  
     // Guardar nueva URL
     function saveUrl() {
       const url = document.getElementById("urlInput").value.trim();

@@ -6,6 +6,7 @@ function iniciarSesion(){
     if (password===pass){
         
         alert('inicio de sesion correcto');
+        window.location.href = '/3.html';
     }
     else{
         alert('intente nuevamente');
