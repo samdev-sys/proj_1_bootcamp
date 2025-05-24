@@ -1,7 +1,7 @@
 // enlace a genPass
 async function genPass() {
-    const response = await fetch("http://localhost:3000/generar-contraseña");
-    const data = await response.json();
+    const response = await fetch("https://opulent-eureka-5gr97xp5qqxp255v-8501.app.github.dev/");
+  
     console.log("contraseña generada", data.password);
     
 }

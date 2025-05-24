@@ -29,8 +29,7 @@
       <a href="#" class="brand-logo">Taskflow</a>
       <ul class="right">
         <li><a href="/Frontend/1.html"><img src="/Frontend/img/icons8-menú-cuadrado-96.png" alt="apps" height="65"></a></li>
-        <li><img src="/Frontend/img/icons8-salida.gif" alt=""onclick="abrirModal()">
-
+        <li><img src="/Frontend/img/icons8-productividad-80.png" alt=""onclick="abrirModal()">
     <div id="confirmacionModal" class="modal" style="background: rgba(9, 80, 64, 0.8);
             border-radius: 10px;">
         <div class="modal-content">
@@ -40,126 +39,80 @@
         
             <button class="btn green" onclick="cerrarSesion()">Sí, cerrar sesión</button>
             <button class="btn grey" onclick="cerrarModal()">Cancelar</button>
+        <script src="/Backend/login.js"></script>
+    </div></li>
+        <li><img src="/Frontend/img/icons8-salida.gif" alt=""onclick="abrirModal()">
+    <div id="confirmacionModal" class="modal" style="background: rgba(9, 80, 64, 0.8);
+            border-radius: 10px;">
+        <div class="modal-content">
+            <h4>¿Seguro que deseas cerrar sesión?</h4>
+            <p style="font-size: 20px; color:aliceblue">Si cierras sesión, tendrás que volver a ingresar tus credenciales.</p>
+        </div>
         
+            <button class="btn green" onclick="cerrarSesion()">Sí, cerrar sesión</button>
+            <button class="btn grey" onclick="cerrarModal()">Cancelar</button>
+        <script src="/Backend/login.js"></script>
     </div></li>
       </ul>
     </div>
   </nav>
 
-  <!-- TABLA DE ACTIVIDADES -->
   <table class="striped bordered highlight centered responsive-table">
-    <thead>
-      <tr>
-        <th>Actividad</th>
-        <th>Estado</th>
-        <th>Progreso</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Diseño de página web</td>
-        <td>En proceso</td>
-        <td>
-          <div class="progress">
-            <div class="determinate" style="width: 60%;"></div>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>Revisión de contenido</td>
-        <td>Completado</td>
-        <td>
-          <div class="progress">
-            <div class="determinate" style="width: 100%;"></div>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>Pruebas de funcionalidad</td>
-        <td>Pendiente</td>
-        <td>
-          <div class="progress">
-            <div class="determinate" style="width: 20%;"></div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <thead style="background-color:#333; color:white;">
+    <tr>
+      <th>Actividad</th>
+      <th>Estado</th>
+      <th>Progreso</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Diseño de página web</td>
+      <td><i class="material-icons yellow-text">hourglass_empty</i> En proceso</td>
+      <td>
+        <div class="progress">
+          <div class="determinate" style="width: 60%; background: linear-gradient(45deg, #FFEB3B, #FFC107);"></div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Revisión de contenido</td>
+      <td><i class="material-icons green-text">check_circle</i> Completado</td>
+      <td>
+        <div class="progress">
+          <div class="determinate" style="width: 100%; background: linear-gradient(45deg, #4CAF50, #8BC34A);"></div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Pruebas de funcionalidad</td>
+      <td><i class="material-icons red-text">error</i> Pendiente</td>
+      <td>
+        <div class="progress">
+          <div class="determinate" style="width: 20%; background: linear-gradient(45deg, #F44336, #E53935);"></div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
   <!-- FORMULARIO PARA GUARDAR URL -->
   <form id="urlForm">
     <label for="urlInput" class="txt">Introduce URLs para acceso rapido</label>
-    <input type="url" id="urlInput" required />
-    <button type="button" id="saveUrlBtn" style="border-radius:4px; color:rgb(14, 11, 17); background-color:rgb(43, 226, 73)">Guardar URL</button>
-  <script src=""></script>
+    <input type="url" id="urlInput" required  style="border: 2px rgb(143, 126, 126);"/>
+    <button type="button" id="saveUrlBtn" style="border-radius:4px; color:rgb(20, 20, 20); background-color:rgb(43, 226, 73)">Guardar URL</button>
+  <script src="/Backend/script.js"></script>
   </form>
 
   <!-- CONTENEDOR DE ICONOS -->
-  <h1 style=" font-size: 30px; color: rgb(49, 87, 6);">Mis enlaces guardados</h1>
+  <h1 style=" font-size: 30px; color: rgb(49, 87, 6);">Enlaces guardados</h1>
   <div id="iconsContainer"></div>
 
   <!-- SCRIPTS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
-  
-    // Guardar nueva URL
-    function saveUrl() {
-      const url = document.getElementById("urlInput").value.trim();
-      if (url) {
-        let urls = JSON.parse(localStorage.getItem("urls")) || [];
-        urls.push(url);
-        localStorage.setItem("urls", JSON.stringify(urls));
-        displayUrls();
-        document.getElementById("urlInput").value = ""; // limpiar campo
-      }
-    }
-
-    // Mostrar URLs guardadas
-    function displayUrls() {
-      let urls = JSON.parse(localStorage.getItem("urls")) || [];
-      const container = document.getElementById("iconsContainer");
-      container.innerHTML = "";
-
-      urls.forEach(url => {
-        try {
-    const domain = new URL(url).hostname;  // extrae solo el dominio
-    const link = document.createElement("a");
-    link.href = url;
-    link.target = "_blank";
-
-    // asegúrate de usar comillas correctamente
-    const img = document.createElement("img");
-    img.src = `https://www.google.com/s2/favicons?domain=${domain}`;
-    img.alt = "icono";
-    img.style.margin = "30px";
-
-    link.appendChild(img);
-    container.appendChild(link);
-  } catch (e) {
-    console.error("URL inválida:", url);
-  }
-});
-    }
-
-    // Opcional: traer desde Flask backend
-    function fetchUrls() {
-      fetch("http://127.0.0.1:5000/get_urls")
-        .then(response => response.json())
-        .then(data => {
-          const container = document.getElementById("iconsContainer");
-          container.innerHTML = data.urls.length ? "" : "<p>No hay URLs guardadas.</p>";
-
-          data.urls.forEach(url => {
-            const link = document.createElement("a");
-            link.href = url;
-            link.target = "_blank";
-            link.innerHTML = `<img src="https://www.google.com/s2/favicons?domain=${url}" alt="icono">`;
-            container.appendChild(link);
-          });
-        })
-        .catch(error => console.error("Error al obtener URLs:", error));
-    }
-
+   
+    
     // Inicialización al cargar la página
     document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("saveUrlBtn").addEventListener("click", saveUrl);
