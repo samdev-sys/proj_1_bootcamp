@@ -33,8 +33,24 @@
     <div id="confirmacionModal" class="modal" style="background: rgba(9, 80, 64, 0.8);
             border-radius: 10px;">
         <div class="modal-content">
-            <h4>¿Seguro que deseas cerrar sesión?</h4>
-            <p style="font-size: 20px; color:aliceblue">Si cierras sesión, tendrás que volver a ingresar tus credenciales.</p>
+          <h2 style="color:#4CAF50; font-size:35px;" onmouseover="this.innerText='добавить задачу';" onmouseout="this.innerText='Añadir tarea/Add task';">Añadir tarea/Add task</h2>
+       
+        <label for="" class="txt" onmouseover="this.innerText='добавить задачу';" onmouseout="this.innerText='Añadir tarea/Add task';"">Asunto/subject</label>
+        <input type="text" id="Nombres" name="nombres">
+        <br>
+        <label for="" style="color: rgb(13, 73, 73); font-family:Roboto Mono, monospace; font-size:25px; gap:0;   "onmouseover="this.innerText='У тебя есть задание на фото?.. Загрузи е';" onmouseout="this.innerText=' Tienes la tarea en una foto?..Subela!';" "> Tienes la tarea en una foto?..Subela!</label>
+        <input type="file" name="foto">
+        <br>
+        <label for="" class="txt" onmouseover="this.innerText='пользователь ';" onmouseout="this.innerText='Usuario/user';">Usuario/user</label>
+        <input type="text">
+        <br>
+     </div>  
+     <div class="container">
+        <input class="but" type="submit" value="cargar/upload" onmouseover="this.innerText='загрузить';" onmouseout="this.innerText='cargar/upload';"></input>
+     </div>
+    
+ </div>
+ </form>
         </div>
         
             <button class="btn green" onclick="cerrarSesion()">Sí, cerrar sesión</button>
@@ -95,10 +111,13 @@
     </tr>
   </tbody>
 </table>
+<br>
+<br>
 
-  <!-- FORMULARIO PARA GUARDAR URL -->
-  <form id="urlForm">
-    <label for="urlInput" class="txt">Introduce URLs para acceso rapido</label>
+  <div class="container" style="border:2px solid rgb(252, 253, 253); border-radius:10px; right:50%;">
+     <!-- FORMULARIO PARA GUARDAR URL -->
+    <form id="urlForm">
+   <label for="urlInput" class="txt">Introduce URLs para acceso rapido</label>
     <input type="url" id="urlInput" required  style="border: 2px rgb(143, 126, 126);"/>
     <button type="button" id="saveUrlBtn" style="border-radius:4px; color:rgb(20, 20, 20); background-color:rgb(43, 226, 73)">Guardar URL</button>
   <script src="/Backend/script.js"></script>
@@ -110,9 +129,8 @@
 
   <!-- SCRIPTS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </div>
   <script>
-   
-    
     // Inicialización al cargar la página
     document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("saveUrlBtn").addEventListener("click", saveUrl);
