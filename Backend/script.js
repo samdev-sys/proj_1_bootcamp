@@ -79,3 +79,5 @@ document.getElementById('btn_inicioSesion').addEventListener('click', iniciarSes
         })
         .catch(error => console.error("Error al obtener URLs:", error));
     }
+
+   

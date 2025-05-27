@@ -24,108 +24,111 @@
 <body>
 
   <!-- NAVBAR -->
-  <nav class="nav">
-    <div class="nav-wrapper green accent-4">
-      <a href="#" class="brand-logo">Taskflow</a>
-      <ul class="right">
-        <li><a href="/Frontend/1.html"><img src="/Frontend/img/icons8-menú-cuadrado-96.png" alt="apps" height="65"></a></li>
-        <li><img src="/Frontend/img/icons8-productividad-80.png" alt=""onclick="abrirModal()">
+    <nav>
+    <div class="nav-wrapper light-green lighten-1" >
+      <a href="#" class="brand-logo">taskFlow</a>
+      <ul id="nav-mobile">
+        <li><a href="/Frontend/1.html"><img src="/Frontend/img/icons8-menú-cuadrado-96.png"  height="65px";alt="apps"></a></li>
+        <li>
+          <img src="/Frontend/img/icons8-salida.gif" height="65px" alt="left"onclick="abrirModal()">
     <div id="confirmacionModal" class="modal" style="background: rgba(9, 80, 64, 0.8);
             border-radius: 10px;">
         <div class="modal-content">
-          <h2 style="color:#4CAF50; font-size:35px;" onmouseover="this.innerText='добавить задачу';" onmouseout="this.innerText='Añadir tarea/Add task';">Añadir tarea/Add task</h2>
-       
-        <label for="" class="txt" onmouseover="this.innerText='добавить задачу';" onmouseout="this.innerText='Añadir tarea/Add task';"">Asunto/subject</label>
-        <input type="text" id="Nombres" name="nombres">
-        <br>
-        <label for="" style="color: rgb(13, 73, 73); font-family:Roboto Mono, monospace; font-size:25px; gap:0;   "onmouseover="this.innerText='У тебя есть задание на фото?.. Загрузи е';" onmouseout="this.innerText=' Tienes la tarea en una foto?..Subela!';" "> Tienes la tarea en una foto?..Subela!</label>
-        <input type="file" name="foto">
-        <br>
-        <label for="" class="txt" onmouseover="this.innerText='пользователь ';" onmouseout="this.innerText='Usuario/user';">Usuario/user</label>
-        <input type="text">
-        <br>
-     </div>  
-     <div class="container">
-        <input class="but" type="submit" value="cargar/upload" onmouseover="this.innerText='загрузить';" onmouseout="this.innerText='cargar/upload';"></input>
-     </div>
-    
- </div>
- </form>
+            <h4 style="color: aqua;">¿Seguro que deseas cerrar sesión?</h4>
+            <p style="font-size: 20px; color:rgb(44, 131, 207); ">Si cierras sesión, tendrás que volver a ingresar tus credenciales.</p>
         </div>
         
             <button class="btn green" onclick="cerrarSesion()">Sí, cerrar sesión</button>
             <button class="btn grey" onclick="cerrarModal()">Cancelar</button>
         <script src="/Backend/login.js"></script>
-    </div></li>
-        <li><img src="/Frontend/img/icons8-salida.gif" alt=""onclick="abrirModal()">
-    <div id="confirmacionModal" class="modal" style="background: rgba(9, 80, 64, 0.8);
-            border-radius: 10px;">
-        <div class="modal-content">
-            <h4>¿Seguro que deseas cerrar sesión?</h4>
-            <p style="font-size: 20px; color:aliceblue">Si cierras sesión, tendrás que volver a ingresar tus credenciales.</p>
-        </div>
-        
-            <button class="btn green" onclick="cerrarSesion()">Sí, cerrar sesión</button>
-            <button class="btn grey" onclick="cerrarModal()">Cancelar</button>
-        <script src="/Backend/login.js"></script>
-    </div></li>
+    </div>
+  </li>
+</li>
+      
       </ul>
     </div>
   </nav>
+  <br>
+  <main class="main">  
+    <a class="btn cyan darken-1 modal-trigger" href="#modal1">Ver Proyectos</a>
 
-  <table class="striped bordered highlight centered responsive-table">
-  <thead style="background-color:#333; color:white;">
-    <tr>
-      <th>Actividad</th>
-      <th>Estado</th>
-      <th>Progreso</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Diseño de página web</td>
-      <td><i class="material-icons yellow-text">hourglass_empty</i> En proceso</td>
-      <td>
-        <div class="progress">
-          <div class="determinate" style="width: 60%; background: linear-gradient(45deg, #FFEB3B, #FFC107);"></div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>Revisión de contenido</td>
-      <td><i class="material-icons green-text">check_circle</i> Completado</td>
-      <td>
-        <div class="progress">
-          <div class="determinate" style="width: 100%; background: linear-gradient(45deg, #4CAF50, #8BC34A);"></div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>Pruebas de funcionalidad</td>
-      <td><i class="material-icons red-text">error</i> Pendiente</td>
-      <td>
-        <div class="progress">
-          <div class="determinate" style="width: 20%; background: linear-gradient(45deg, #F44336, #E53935);"></div>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+ <div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Proyectos</h4>
+    <table class="striped bordered highlight centered responsive-table">
+      <thead style="background-color:#333; color:white;">
+        <tr>
+          <th>Actividad</th>
+          <th>Estado</th>
+          <th>Progreso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Diseño de página web</td>
+          <td><i class="material-icons yellow-text">hourglass_empty</i> En proceso</td>
+          <td>
+            <div class="progress">
+              <div class="determinate" style="width: 60%; background: linear-gradient(45deg, #FFEB3B, #FFC107);"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Revisión de contenido</td>
+          <td><i class="material-icons green-text">check_circle</i> Completado</td>
+          <td>
+            <div class="progress">
+              <div class="determinate" style="width: 100%; background: linear-gradient(45deg, #4CAF50, #8BC34A);"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Pruebas de funcionalidad</td>
+          <td><i class="material-icons red-text">error</i> Pendiente</td>
+          <td>
+            <div class="progress">
+              <div class="determinate" style="width: 20%; background: linear-gradient(45deg, #F44336, #E53935);"></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close btn red darken-1">Cerrar</a>
+  </div>
+</div>
+
+
+ 
 <br>
 <br>
 
-  <div class="container" style="border:2px solid rgb(252, 253, 253); border-radius:10px; right:50%;">
-     <!-- FORMULARIO PARA GUARDAR URL -->
+ <a class="btn cyan darken-1 modal-trigger" href="#modalURL">Gestionar URLs</a>
+
+ <div id="modalURL" class="modal">
+  <div class="modal-content">
+    <h4>Introduce URLs para acceso rápido</h4>
+    
+    <!-- FORMULARIO PARA GUARDAR URL -->
     <form id="urlForm">
-   <label for="urlInput" class="txt">Introduce URLs para acceso rapido</label>
-    <input type="url" id="urlInput" required  style="border: 2px rgb(143, 126, 126);"/>
-    <button type="button" id="saveUrlBtn" style="border-radius:4px; color:rgb(20, 20, 20); background-color:rgb(43, 226, 73)">Guardar URL</button>
-  <script src="/Backend/script.js"></script>
-  </form>
+      <label for="urlInput" class="txt">Introduce una URL:</label>
+      <input type="url" id="urlInput" required style="border: 2px solid rgb(143, 126, 126);"/>
+      <button type="button" id="saveUrlBtn" style="border-radius:4px; color:rgb(20, 20, 20); background-color:rgb(43, 226, 73)">Guardar URL</button>
+    </form>
 
-  <!-- CONTENEDOR DE ICONOS -->
-  <h1 style=" font-size: 30px; color: rgb(49, 87, 6);">Enlaces guardados</h1>
-  <div id="iconsContainer"></div>
+    <!-- CONTENEDOR DE ICONOS -->
+    <h4 style="color: rgb(49, 87, 6);">Enlaces guardados</h4>
+    <div id="iconsContainer"></div>
+  </div>
+  
+  <div class="modal-footer">
+    <a href="#!" class="modal-close btn red darken-1">Cerrar</a>
+  </div>
+</div>
+</main>
+ 
+
 
   <!-- SCRIPTS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -136,6 +139,16 @@
       document.getElementById("saveUrlBtn").addEventListener("click", saveUrl);
       displayUrls(); // o fetchUrls(); si estás usando Flask
     });
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, {});
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
+
   </script>
 </body>
 </html>

@@ -83,3 +83,9 @@ h1{
     justify-content: flex-start;
 
 }
+
+.main{
+    display: flex;
+    justify-content:flex-start;
+    gap:8px;
+}
