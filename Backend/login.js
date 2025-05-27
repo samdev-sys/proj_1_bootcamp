@@ -13,7 +13,7 @@ async function genPass() {
         });
 
         function abrirModal() {
-            var modal = M.Modal.getInstance(document.getElementById('confirmacionModal'));
+            var modal = M.Modal.getInstance(document.getElementById('confirmacionmodal'));
             modal.open();
         }
 

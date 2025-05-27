@@ -24,28 +24,28 @@
 <body>
 
   <!-- NAVBAR -->
-    <nav>
-    <div class="nav-wrapper light-green lighten-1" >
-      <a href="#" class="brand-logo">taskFlow</a>
-      <ul id="nav-mobile">
-        <li><a href="/Frontend/1.html"><img src="/Frontend/img/icons8-menú-cuadrado-96.png"  height="65px";alt="apps"></a></li>
+  <nav>
+    <div class="nav-wrapper light-green lighten-1">
+      <a href="#" class="brand-logo" style=" display: flex; justify-content: center;">taskFlow</a>
+      <ul id="nav-mobile" style="display: flex; justify-content: flex-end;">
         <li>
-          <img src="/Frontend/img/icons8-salida.gif" height="65px" alt="left"onclick="abrirModal()">
-    <div id="confirmacionModal" class="modal" style="background: rgba(9, 80, 64, 0.8);
+          <a href="/Frontend/1.html"><img src="/Frontend/img/icons8-menú-cuadrado-96.png" alt="apps" height="65px"></a>
+        </li>
+        <li><img src="/Frontend/img/icons8-salida.gif" height="65px" alt="left"onclick="abrirModal()">
+        <div id="confirmacionmodal" class="modal" style="background: rgba(9, 80, 64, 0.8);
             border-radius: 10px;">
-        <div class="modal-content">
-            <h4 style="color: aqua;">¿Seguro que deseas cerrar sesión?</h4>
-            <p style="font-size: 20px; color:rgb(44, 131, 207); ">Si cierras sesión, tendrás que volver a ingresar tus credenciales.</p>
+            <div class="modal-content">
+              <h4 style="color: aqua;">¿Seguro que deseas cerrar sesión?</h4>
+              <p style="font-size: 20px; color:rgb(44, 131, 207); ">Si cierras sesión, tendrás que volver a ingresar tus credenciales.</p>
         </div>
         
             <button class="btn green" onclick="cerrarSesion()">Sí, cerrar sesión</button>
             <button class="btn grey" onclick="cerrarModal()">Cancelar</button>
         <script src="/Backend/login.js"></script>
-    </div>
-  </li>
-</li>
-      
+
+            </div></div></li>
       </ul>
+
     </div>
   </nav>
   <br>
@@ -98,9 +98,6 @@
     <a href="#!" class="modal-close btn red darken-1">Cerrar</a>
   </div>
 </div>
-
-
- 
 <br>
 <br>
 
@@ -125,7 +122,62 @@
   <div class="modal-footer">
     <a href="#!" class="modal-close btn red darken-1">Cerrar</a>
   </div>
+  <script src="/Backend/script.js"></script>
 </div>
+
+<a class="btn cyan darken-1 modal-trigger" href="#modal2">Crear Proyecto</a>
+
+ <div id="modal1" class="modal">
+  <div class="modal-content">
+    <div class="container" id="">
+    <form action="" method="post">
+        <h1> REGISTRAR USUARIO</h1>
+       
+        <label for="" class="txt">Nombres</label>
+        <input type="text" id="Nombres" name="nombres">
+        <br>
+        <label for="" style="color: azure; font-family:Roboto Mono, monospace;">Sube tu foto </label>
+        <input type="file" name="foto">
+        <br>
+        <label for="" class="txt">Usuario</label>
+        <input type="text">
+        <br>
+        <label for="" class="txt">Email</label>
+        <input type="email">
+        <br> 
+        <label for="" class="txt">Contraseña</label>
+        <input type="password">
+        <!-- Botón para abrir el modal -->
+<a href="https://opulent-eureka-5gr97xp5qqxp255v-8501.app.github.dev/app.py", target="_blank" id="generatePass" target="_blank">puedes usar nuestro generador de contraseñas</a>
+
+
+        <br>
+
+       <div class="input-field">
+     <select name="pregunta" id="pregunta">
+    <option value="" disabled selected style="color: aquamarine; font-family: Roboto Mono, monospace;">Seleccione una pregunta</option>
+    <option value="madre">¿Nombre de tu madre?</option>
+    <option value="mascota">¿Nombre de tu primera mascota?</option>
+    <option value="escuela">¿Nombre de tu escuela primaria?</option>
+    <option value="ciudad">¿En qué ciudad naciste?</option>
+    </select>
+    <label for="pregunta">Pregunta de seguridad</label>
+    </div>
+     <label for="" class="txt">Respuesta</label>
+     <input type="text">
+
+    
+     </div>  
+     <div class="container">
+        <input class="but" type="submit" value="Registrar">
+     </div>
+    
+ </div>
+ </form>
+  </div>
+  <script src="/Backend/script.js"></script>
+</div>
+
 </main>
  
 
