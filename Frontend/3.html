@@ -41,8 +41,7 @@
         
             <button class="btn green" onclick="cerrarSesion()">Sí, cerrar sesión</button>
             <button class="btn grey" onclick="cerrarModal()">Cancelar</button>
-        <script src="/Backend/login.js"></script>
-
+        
             </div></div></li>
       </ul>
 
@@ -125,21 +124,18 @@
   <script src="/Backend/script.js"></script>
 </div>
 
-<a class="btn cyan darken-1 modal-trigger" href="#modal2">Crear Proyecto</a>
-
- <div id="modal1" class="modal">
-  <div class="modal-content">
-    <div class="container" id="">
-    <form action="" method="post">
-        <h1> REGISTRAR USUARIO</h1>
+<a class="waves-effect waves-light btn modal-trigger" href="#modal2"> agregar tarea</a>
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+        <h1>Agregar tarea</h1>
        
-        <label for="" class="txt">Nombres</label>
+        <label for="" class="txt">Asunto</label>
         <input type="text" id="Nombres" name="nombres">
         <br>
-        <label for="" style="color: azure; font-family:Roboto Mono, monospace;">Sube tu foto </label>
+        <label for="" style="color: rgb(36, 147, 147); font-family:Roboto Mono, monospace;font-size: 20px;">Adjuntar archivos </label>
         <input type="file" name="foto">
         <br>
-        <label for="" class="txt">Usuario</label>
+        <label for="" class="txt">Descripcion</label>
         <input type="text">
         <br>
         <label for="" class="txt">Email</label>
@@ -166,17 +162,11 @@
      <label for="" class="txt">Respuesta</label>
      <input type="text">
 
-    
-     </div>  
-     <div class="container">
-        <input class="but" type="submit" value="Registrar">
-     </div>
-    
- </div>
- </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
   </div>
-  <script src="/Backend/script.js"></script>
-</div>
 
 </main>
  
@@ -185,6 +175,8 @@
   <!-- SCRIPTS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </div>
+  <script src="/Backend/login.js"></script>
+
   <script>
     // Inicialización al cargar la página
     document.addEventListener("DOMContentLoaded", function () {
