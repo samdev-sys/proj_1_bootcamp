@@ -49,55 +49,6 @@
   </nav>
   <br>
   <main class="main">  
-    <a class="btn cyan darken-1 modal-trigger" href="#modal1">Ver Proyectos</a>
-
- <div id="modal1" class="modal">
-  <div class="modal-content">
-    <h4>Proyectos</h4>
-    <table class="striped bordered highlight centered responsive-table">
-      <thead style="background-color:#333; color:white;">
-        <tr>
-          <th>Actividad</th>
-          <th>Estado</th>
-          <th>Progreso</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Diseño de página web</td>
-          <td><i class="material-icons yellow-text">hourglass_empty</i> En proceso</td>
-          <td>
-            <div class="progress">
-              <div class="determinate" style="width: 60%; background: linear-gradient(45deg, #FFEB3B, #FFC107);"></div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Revisión de contenido</td>
-          <td><i class="material-icons green-text">check_circle</i> Completado</td>
-          <td>
-            <div class="progress">
-              <div class="determinate" style="width: 100%; background: linear-gradient(45deg, #4CAF50, #8BC34A);"></div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Pruebas de funcionalidad</td>
-          <td><i class="material-icons red-text">error</i> Pendiente</td>
-          <td>
-            <div class="progress">
-              <div class="determinate" style="width: 20%; background: linear-gradient(45deg, #F44336, #E53935);"></div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-close btn red darken-1">Cerrar</a>
-  </div>
-</div>
-<br>
 <br>
 
  <a class="btn cyan darken-1 modal-trigger" href="#modalURL">Gestionar URLs</a>
@@ -133,43 +84,81 @@
         <input type="text" id="Nombres" name="nombres">
         <br>
         <label for="" style="color: rgb(36, 147, 147); font-family:Roboto Mono, monospace;font-size: 20px;">Adjuntar archivos </label>
-        <input type="file" name="foto">
+        <input type="file" name="file">
+        <br>
+        <label for="" style="color: rgb(36, 147, 147); font-family:Roboto Mono, monospace;font-size: 20px;">Adjuntar urls</label>
+        <input type="url" name="url">
         <br>
         <label for="" class="txt">Descripcion</label>
-        <input type="text">
+        <textarea name="Descripcion" id=""></textarea>
         <br>
-        <label for="" class="txt">Email</label>
-        <input type="email">
-        <br> 
-        <label for="" class="txt">Contraseña</label>
-        <input type="password">
-        <!-- Botón para abrir el modal -->
-<a href="https://opulent-eureka-5gr97xp5qqxp255v-8501.app.github.dev/app.py", target="_blank" id="generatePass" target="_blank">puedes usar nuestro generador de contraseñas</a>
-
+        <div><div class="input-field">
+  </div>
+<script src="/Backend/script.js"></script>
+ </div>
+        
+        
 
         <br>
 
-       <div class="input-field">
-     <select name="pregunta" id="pregunta">
-    <option value="" disabled selected style="color: aquamarine; font-family: Roboto Mono, monospace;">Seleccione una pregunta</option>
-    <option value="madre">¿Nombre de tu madre?</option>
-    <option value="mascota">¿Nombre de tu primera mascota?</option>
-    <option value="escuela">¿Nombre de tu escuela primaria?</option>
-    <option value="ciudad">¿En qué ciudad naciste?</option>
-    </select>
-    <label for="pregunta">Pregunta de seguridad</label>
-    </div>
-     <label for="" class="txt">Respuesta</label>
-     <input type="text">
-
+   
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
     </div>
   </div>
 
+
+
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal3">Contactos/miembros</a>
+
+  <!-- Modal Structure -->
+  <div id="modal3" class="modal" style="border-radius: 8px;">
+    <div class="modal-content">
+     <h1>Agregar Contacto</h1>
+       
+        <label for="" class="txt">Nombre</label>
+        <input type="text" id="Nombres" name="nombres">
+        <br>
+        <label for="" class="txt">Usuario</label>
+        <input type="text" id="Nombres" name="User">
+        <br>
+        <label for="" style="color: rgb(13, 93, 93); font-family:Roboto Mono, monospace;">Sube tu foto </label>
+        <input type="file" name="foto">
+        <br>
+        <label for="" class="txt">Datos alternos</label>
+        <input type="text">
+        <br>
+         <div class="container">
+        <input class="but" type="submit" value="Guardar">
+     </div>
+
+    </div>
+    <div class="modal-footer">
+      <button style="background-color: #4CAF50; border-radius: 8px;"><a href="#!" class="modal-close waves-effect waves-green btn-flat" style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: 200;">Cerrar</a></button>
+    </div>
+  </div>
+  
+
 </main>
- 
+<h2 class="txt">Actividades</h2>
+ <div >
+     <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons cyan-text">hourglass_empty</i>En proceso</div>
+      <div class="collapsible-body">
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons  red-text">hourglass_full</i>Pendientes</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons teal-text">check</i>Finalizado</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+  </ul>
+</div>
+
 
 
   <!-- SCRIPTS -->
@@ -183,15 +172,23 @@
       document.getElementById("saveUrlBtn").addEventListener("click", saveUrl);
       displayUrls(); // o fetchUrls(); si estás usando Flask
     });
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems, {});
-  });
+    
 
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, {});
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, {});
+  });
+
 
   </script>
 </body>
