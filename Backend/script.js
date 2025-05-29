@@ -1,28 +1,25 @@
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById('btn_inicioSesion').addEventListener('click', iniciarSesion);
-});
 
+function iniciarSesion(event) {
+    event.preventDefault(); // Previene el envío del formulario
 
-
-function iniciarSesion(){
-    let user =document.getElementById('usernameLog').value;
-    let password=document.getElementById('passwordLog').value;
+    let user = document.getElementById('usernameLog').value.trim();
+    let password = document.getElementById('passwordLog').value.trim();
     
-    let user2 = 'admin';
-    let pass= 'admin';
+    const user2 = 'admin';
+    const pass = 'admin';
 
-    if ( user===user2 && password===pass){
-        
-        alert('inicio de sesion correcto');
-        window.location.href = 'Frontend/3.html';
-    }
-    else{
-        alert('intente nuevamente');
+    if (user === user2 && password === pass) {
+        alert('Inicio de sesión correcto');
+        window.location.href = '/Frontend/3.html';
+    } else {
+        alert('Intente nuevamente');
     }
 }
 
-document.getElementById('btn_inicioSesion').addEventListener('click', iniciarSesion);
-
+// Asegurarse de que el evento se asigne cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('btn_inicioSesion').addEventListener('click', iniciarSesion);
+});
  function saveUrl() {
       const url = document.getElementById("urlInput").value.trim();
       if (url) {
@@ -80,4 +77,33 @@ document.getElementById('btn_inicioSesion').addEventListener('click', iniciarSes
         .catch(error => console.error("Error al obtener URLs:", error));
     }
 
+    document.addEventListener('DOMContentLoaded', function() {
+  var selectElem = document.querySelectorAll('select');
+  M.FormSelect.init(selectElem);
+
+  var chipsElem = document.querySelectorAll('.chips-autocomplete');
+  var chipsInstance = M.Chips.init(chipsElem, {
+    autocompleteOptions: {
+      data: {
+        'Opción 1': null,
+        'Opción 2': null,
+        'Opción 3': null
+      },
+      limit: Infinity,
+      minLength: 1
+    },
+    onChipAdd: function(e, chip) {
+      let select = document.getElementById('select-options');
+      let value = chip.innerText.trim();
+      let option = [...select.options].find(opt => opt.text === value);
+      if (option) option.selected = true;
+    },
+    onChipDelete: function(e, chip) {
+      let select = document.getElementById('select-options');
+      let value = chip.innerText.trim();
+      let option = [...select.options].find(opt => opt.text === value);
+      if (option) option.selected = false;
+    }
+  });
+});
    
