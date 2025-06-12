@@ -1,8 +1,20 @@
 {
   "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.5.0",
+    "express": "^5.1.0",
     "mongoose": "^8.15.0",
     "mysql2": "^3.14.1",
     "nodemailer": "^7.0.3"
-  }
+  },
+  "name": "proj_1_bootcamp",
+  "version": "1.0.0",
+  "description": "<h1>proyecto WebApp</h1>\r <h2>objetivo</h2>\r <p>realizar proyecto donde se aplican los conocimientos adquiridos en bootcamp desarrollo fullstack</p>\r <h2>Tecnologias utilizadas</h2>\r <p>Frontend:Html, css, Javascript, Materialize css</p>\r <p>Backend: Javascript,NodeJS</p>\r <p>modelo de base de datos a utilizar : por definir</p>\r <p>se hace propuesta de conexion a BD </p>\r <p>se propone conexion a MySQL</p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
