@@ -10,7 +10,7 @@ function iniciarSesion(event) {
 
     if (user === user2 && password === pass) {
         alert('Inicio de sesión correcto');
-        window.location.href = '/Frontend/3.html';
+        window.location.href ='./Frontend/add_task.html';
     } else {
         alert('Intente nuevamente');
     }
