@@ -51,7 +51,7 @@
   <main class="main">  
 <br>
 
- <a class="btn cyan darken-1 modal-trigger" href="#modalURL">Gestionar URLs</a>
+ <a class="btn cyan darken-1 modal-trigger   cyan lighten-1" style="border-radius: 8px;"   href="#modalURL">Gestionar URLs</a>
 
  <div id="modalURL" class="modal">
   <div class="modal-content">
@@ -75,7 +75,7 @@
   <script src="/Backend/script.js"></script>
 </div>
 
-<a class="waves-effect waves-light btn modal-trigger" href="#modal2"> agregar tarea</a>
+<a class="waves-effect waves-light btn modal-trigger blue darken-4"  style="border-radius: 8px;"      href="#modal2"> agregar tarea</a>
   <div id="modal2" class="modal">
     <div class="modal-content">
         <h1>Agregar tarea</h1>
@@ -92,6 +92,27 @@
         <label for="" class="txt">Descripcion</label>
         <textarea name="Descripcion" id=""></textarea>
         <br>
+  <form action="#">
+    <p>
+      <label>
+        <input name="group1" type="radio" checked />
+        <span> Por iniciar</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input name="group1" type="radio" />
+        <span>En proceso</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="group1" type="radio"  />
+        <span>Finalizado</span>
+      </label>
+    </p>
+    
+  </form>
         <div><div class="input-field">
   </div>
 <script src="/Backend/script.js"></script>
