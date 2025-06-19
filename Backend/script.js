@@ -1,19 +1,24 @@
-
 function iniciarSesion(event) {
     event.preventDefault(); // Previene el envío del formulario
 
     let user = document.getElementById('usernameLog').value.trim();
     let password = document.getElementById('passwordLog').value.trim();
     
-    const user2 = 'admin';
-    const pass = 'admin';
+    fetch('http://localhost:3000/login',{
+      method:'POST',
+      headers:{'Content-type':'application/json'},
+      body:JSON.stringify({user, password})
+    })
+    .then(response => response.json())
+    .then(data =>{
+      if (data.success){
+        alert('inicio de sesion correcto');
+        window.location.href='./Frontend/add_task.html';
+      }else{alert('intente de nuevo, usuario o contraseña incorrecto ');
 
-    if (user === user2 && password === pass) {
-        alert('Inicio de sesión correcto');
-        window.location.href ='./Frontend/add_task.html';
-    } else {
-        alert('Intente nuevamente');
-    }
+      }
+    })
+    .catch(error=> console.error('Error al iniciar sesion', error));
 }
 
 // Asegurarse de que el evento se asigne cuando el DOM esté listo
@@ -58,52 +63,74 @@ document.addEventListener('DOMContentLoaded', function() {
 });
     }
 
-    // Opcional: traer desde Flask backend
-    function fetchUrls() {
-      fetch("http://127.0.0.1:5000/get_urls")
-        .then(response => response.json())
-        .then(data => {
-          const container = document.getElementById("iconsContainer");
-          container.innerHTML = data.urls.length ? "" : "<p>No hay URLs guardadas.</p>";
+//     // Opcional: traer desde Flask backend
+//     function fetchUrls() {
+//       fetch("http://127.0.0.1:5000/get_urls")
+//         .then(response => response.json())
+//         .then(data => {
+//           const container = document.getElementById("iconsContainer");
+//           container.innerHTML = data.urls.length ? "" : "<p>No hay URLs guardadas.</p>";
 
-          data.urls.forEach(url => {
-            const link = document.createElement("a");
-            link.href = url;
-            link.target = "_blank";
-            link.innerHTML = `<img src="https://www.google.com/s2/favicons?domain=${url}" alt="icono">`;
-            container.appendChild(link);
-          });
-        })
-        .catch(error => console.error("Error al obtener URLs:", error));
-    }
+//           data.urls.forEach(url => {
+//             const link = document.createElement("a");
+//             link.href = url;
+//             link.target = "_blank";
+//             link.innerHTML = `<img src="https://www.google.com/s2/favicons?domain=${url}" alt="icono">`;
+//             container.appendChild(link);
+//           });
+//         })
+//         .catch(error => console.error("Error al obtener URLs:", error));
+//     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-  var selectElem = document.querySelectorAll('select');
-  M.FormSelect.init(selectElem);
+//     document.addEventListener('DOMContentLoaded', function() {
+//   var selectElem = document.querySelectorAll('select');
+//   M.FormSelect.init(selectElem);
 
-  var chipsElem = document.querySelectorAll('.chips-autocomplete');
-  var chipsInstance = M.Chips.init(chipsElem, {
-    autocompleteOptions: {
-      data: {
-        'Opción 1': null,
-        'Opción 2': null,
-        'Opción 3': null
-      },
-      limit: Infinity,
-      minLength: 1
-    },
-    onChipAdd: function(e, chip) {
-      let select = document.getElementById('select-options');
-      let value = chip.innerText.trim();
-      let option = [...select.options].find(opt => opt.text === value);
-      if (option) option.selected = true;
-    },
-    onChipDelete: function(e, chip) {
-      let select = document.getElementById('select-options');
-      let value = chip.innerText.trim();
-      let option = [...select.options].find(opt => opt.text === value);
-      if (option) option.selected = false;
-    }
-  });
-});
+//   var chipsElem = document.querySelectorAll('.chips-autocomplete');
+//   var chipsInstance = M.Chips.init(chipsElem, {
+//     autocompleteOptions: {
+//       data: {
+//         'Opción 1': null,
+//         'Opción 2': null,
+//         'Opción 3': null
+//       },
+//       limit: Infinity,
+//       minLength: 1
+//     },
+//     onChipAdd: function(e, chip) {
+//       let select = document.getElementById('select-options');
+//       let value = chip.innerText.trim();
+//       let option = [...select.options].find(opt => opt.text === value);
+//       if (option) option.selected = true;
+//     },
+//     onChipDelete: function(e, chip) {
+//       let select = document.getElementById('select-options');
+//       let value = chip.innerText.trim();
+//       let option = [...select.options].find(opt => opt.text === value);
+//       if (option) option.selected = false;
+//     }
+//   });
+// });
+
+
+// fetch('http://localhost:3000/tareas')
+//   .then(response => response.json())
+//   .then(data => {
+//     data.forEach(tarea => {
+//       const span = document.createElement('span');
+//       span.textContent = tarea.asunto;
+
+//       const seccion = tarea.estado === 'En proceso'
+//         ? 'En proceso'
+//         : tarea.estado === 'Por iniciar'
+//         ? 'Pendientes'
+//         : 'Finalizado';
+
+//       document.querySelectorAll('.collapsible-header').forEach(header => {
+//         if (header.textContent.includes(seccion)) {
+//           header.nextElementSibling.appendChild(span);
+//         }
+//       });
+//     });
+//   });
    
