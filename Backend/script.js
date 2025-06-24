@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded",()=>{
          if(result.sucess){
           localStorage.setItem("userId",result.userId);
           alert("inicio de sesion exitoso");
-          window.location.href="./Frontend/add_task.html"
 
          }else{
           alert(result.message);
