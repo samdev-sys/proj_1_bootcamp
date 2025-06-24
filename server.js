@@ -7,15 +7,15 @@ const PORT =3000;
 
 app.use (express.json());
 app.use (cors());
-app.use(bodyParser.json());
+
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}));
 
 // CRUD para users
 app.post('/users',(req,res) =>{
-    const { nombre,usuario, email,contraseña, pregunta, respuesta} =req.body;
-    const sql = 'INSERT INTO users (nombre, usuario, email, contraseña, pregunta, respuesta) VALUES (?, ?, ?, ?, ?, ?)';
-    db.query(sql, [ nombre, usuario, email, contraseña, pregunta, respuesta], (err, result) => {
+    const { nombre,usuario, email,password, pregunta, respuesta} =req.body;
+    const sql = 'INSERT INTO users (nombre, usuario, email, password, pregunta, respuesta) VALUES (?, ?, ?, ?, ?, ?)';
+    db.query(sql, [ nombre, usuario, email, password, pregunta, respuesta], (err, result) => {
     if (err) return res.status(500).send(err);
     res.send({ message: 'Usuario registrado' });
 });
@@ -31,14 +31,14 @@ app.get('/users', (req,res)=>{
 });
 app.put('/users/:id', (req, res) => {
     const userId = req.params.id;
-    const { nombre, usuario, email, contraseña, pregunta, respuesta } = req.body;
+    const { nombre, usuario, email, password, pregunta, respuesta } = req.body;
 
-    if (!nombre || !usuario || !email || !contraseña || !pregunta || !respuesta) {
+    if (!nombre || !usuario || !email || !password || !pregunta || !respuesta) {
         return res.status(400).send({ message: 'Faltan datos en la solicitud' });
     }
 
-    const sql = 'UPDATE users SET nombre=?, usuario=?, email=?, contraseña=?, pregunta=?, respuesta=? WHERE id=?';
-    db.query(sql, [nombre, usuario, email, contraseña, pregunta, respuesta, userId], (err, result) => {
+    const sql = 'UPDATE users SET nombre=?, usuario=?, email=?, password=?, pregunta=?, respuesta=? WHERE id=?';
+    db.query(sql, [nombre, usuario, email, password, pregunta, respuesta, userId], (err, result) => {
         if (err) return res.status(500).send(err);
         if (result.affectedRows === 0) return res.status(404).send({ message: 'Usuario no encontrado' });
 
@@ -114,11 +114,50 @@ app.post('/login',(req,res)=> {
         if(results.length >0){
             res.json({success: true, message:'Inicio se sesion correcto', user:results[0]});
         }else{
-            res.json({success:false,message:'usuario o contraseña incorrecta'});
+            res.json({success:false,message:'usuario o password incorrecta'});
         }
     });
 });
+// CRUD URLS
 
+// guardar urls
+app.post('/urls', (req, res) => {
+  const { userId, url } = req.body;
+  if (!userId || !url) {
+    return res.status(400).json({ message: 'faltan datos' });
+  }
+
+  const checkUser = "SELECT id FROM users WHERE id = ?";
+  console.log("Insertando URL:", url, "para userId:", userId);
+
+  db.query(checkUser, [userId], (err, result) => {
+    if (err) return res.status(500).json({ error: err });
+    if (result.length === 0) {
+      return res.status(404).json({ message: 'usuario no encontrado' });
+    }
+
+    const insert = "INSERT INTO urls (url, user_id) VALUES (?, ?)";
+    console.log("Intentando guardar:", { url, userId });
+    db.query(insert, [url, userId], (err2) => {
+      if (err2) {
+  console.error("Error MySQL al insertar:", err2);
+  return res.status(500).json({ message: err2.message });
+}
+
+      res.status(200).json({ message: "guardado con éxito" });
+    });
+  });
+});
+
+// GET: mostrar URLs
+app.get('/urls/:userId', (req, res) => {
+  const { userId } = req.params;
+  const sql = "SELECT url FROM urls WHERE user_id = ?";
+  db.query(sql, [userId], (err, results) => {
+    if (err) return res.status(500).json({ error: err });
+    res.status(200).json(results);
+  });
+});
 app.listen(PORT, ()=>{
     console.log('Servidor corriendo en http://localhost:3000')
 })

@@ -29,7 +29,7 @@
       <a href="#" class="brand-logo" style=" display: flex; justify-content: center;">taskFlow</a>
       <ul id="nav-mobile" style="display: flex; justify-content: flex-end;">
         <li>
-          <a href="/Frontend/1.html"><img src="/Frontend/img/icons8-menú-cuadrado-96.png" alt="apps" height="65px"></a>
+          <a href="/Frontend/urls.html"><img src="/Frontend/img/icons8-menú-cuadrado-96.png" alt="apps" height="65px"></a>
         </li>
         <li><img src="/Frontend/img/icons8-salida.gif" height="65px" alt="left"onclick="abrirModal()">
         <div id="confirmacionmodal" class="modal" style="background: rgba(9, 80, 64, 0.8);
@@ -56,28 +56,27 @@
  <div id="modalURL" class="modal">
   <div class="modal-content">
     <h4>Introduce URLs para acceso rápido</h4>
-    
-    <!-- FORMULARIO PARA GUARDAR URL -->
-    <form id="urlForm">
-      <label for="urlInput" class="txt">Introduce una URL:</label>
-      <input type="url" id="urlInput" required style="border: 2px solid rgb(143, 126, 126);"/>
-      <button type="button" id="saveUrlBtn" style="border-radius:4px; color:rgb(20, 20, 20); background-color:rgb(43, 226, 73)">Guardar URL</button>
-    </form>
+    <!-- Formulario -->
+<form id="urlForm">
+  <label for="urlInput">Introduce una URL:</label>
+  <input type="url" id="urlInput" required />
+  <button type="button" id="saveUrlBtn">Guardar URL</button>
+</form>
 
-    <!-- CONTENEDOR DE ICONOS -->
-    <h4 style="color: rgb(49, 87, 6);">Enlaces guardados</h4>
-    <div id="iconsContainer"></div>
+<!-- Contenedor de resultados -->
+<h4>Enlaces guardados</h4>
+<div id="iconsContainer"></div>
+
+<script src="script.js"></script>
+
   </div>
+
   
-  <div class="modal-footer">
-    <a href="#!" class="modal-close btn red darken-1">Cerrar</a>
-  </div>
-  <script src="/Backend/script.js"></script>
 </div>
 
 <a class="waves-effect waves-light btn modal-trigger blue darken-4"  style="border-radius: 8px;"      href="#modal2"> agregar tarea</a>
   <div id="modal2" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" style="border: 8px ; border-radius: 8px;">
         <h1>Agregar tarea</h1>
        
         <label for="" class="txt">Asunto</label>
@@ -117,15 +116,10 @@
   </div>
 <script src="/Backend/script.js"></script>
  </div>
-        
-        
-
-        <br>
-
-   
-    </div>
+ <br>
+</div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+      <button class="but"><a href="">enviar</a></button>
     </div>
   </div>
 
@@ -155,9 +149,7 @@
      </div>
 
     </div>
-    <div class="modal-footer">
-      <button style="background-color: #4CAF50; border-radius: 8px;"><a href="#!" class="modal-close waves-effect waves-green btn-flat" style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: 200;">Cerrar</a></button>
-    </div>
+    
   </div>
   
 
@@ -188,29 +180,35 @@
   <script src="/Backend/login.js"></script>
 
   <script>
-    // Inicialización al cargar la página
-    document.addEventListener("DOMContentLoaded", function () {
-      document.getElementById("saveUrlBtn").addEventListener("click", saveUrl);
-      displayUrls(); // o fetchUrls(); si estás usando Flask
-    });
-    
+   document.addEventListener("DOMContentLoaded", function () {
+    // Inicializar modales, selects y collapsibles
+    const modals = document.querySelectorAll(".modal");
+    M.Modal.init(modals);
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems);
+    const selects = document.querySelectorAll("select");
+    M.FormSelect.init(selects);
+
+    const collapsibles = document.querySelectorAll(".collapsible");
+    M.Collapsible.init(collapsibles);
+
+    // Agregar evento al botón si existe
+    const saveBtn = document.getElementById("saveUrlBtn");
+    if (saveBtn) {
+      saveBtn.addEventListener("click", saveUrl);
+    }
+
+    // Obtener credenciales desde localStorage
+    const user = localStorage.getItem("user");
+    const password = localStorage.getItem("password");
+
+    if (user && password) {
+      displayUrls(user, password);
+    } else {
+      console.warn("Credenciales no definidas");
+    }
   });
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, {});
-  });
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.collapsible');
-    var instances = M.Collapsible.init(elems, {});
-  });
-
 
   </script>
+  <script src="/Backend/script.js"defer></script>
 </body>
 </html>
