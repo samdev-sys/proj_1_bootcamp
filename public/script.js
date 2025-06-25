@@ -26,10 +26,10 @@ document.addEventListener("DOMContentLoaded",()=>{
          });
          const result=await response.json();
 
-         if(result.sucess){
+         if(result.success){
           localStorage.setItem("userId",result.userId);
           alert("inicio de sesion exitoso");
-
+          window.location.href="/add_task.html";
          }else{
           alert(result.message);
          }
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded",()=>{
           alert("sesion no valida.Inicia sesion nuevamente");
           return;
         }
-        const isValidUrl =/https?:\/\/.+/i.test(url);
+        const isValidUrl =/^https?:\/\/.+/i.test(url);
         if(!isValidUrl){
           alert("la URL debe comenzar con http:// o https://");
           return;

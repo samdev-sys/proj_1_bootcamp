@@ -6,14 +6,14 @@
   <title>taskFlow</title>
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="/Frontend/styles.css" />
-  <link rel="shortcut icon" href="/Frontend/img/ChatGPT Image 22 may 2025, 08_43_12 p.m_logo..png" type="image/x-icon" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="shortcut icon" href="./img/ChatGPT Image 22 may 2025, 08_43_12 p.m_logo..png" type="image/x-icon" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
   <style>
     body {
-      background-image: url('/Frontend/img/55448.png');
+      background-image: url('./img/55448.png');
       background-repeat: no-repeat;
       background-size: cover;
       font-family: sans-serif;
@@ -29,9 +29,9 @@
       <a href="#" class="brand-logo" style=" display: flex; justify-content: center;">taskFlow</a>
       <ul id="nav-mobile" style="display: flex; justify-content: flex-end;">
         <li>
-          <a href="/Frontend/urls.html"><img src="/Frontend/img/icons8-menú-cuadrado-96.png" alt="apps" height="65px"></a>
+          <a href="/urls.html"><img src="./img/icons8-menú-cuadrado-96.png" alt="apps" height="65px"></a>
         </li>
-        <li><img src="/Frontend/img/icons8-salida.gif" height="65px" alt="left"onclick="abrirModal()">
+        <li><img src="./img/icons8-salida.gif" height="65px" alt="left"onclick="abrirModal()">
         <div id="confirmacionmodal" class="modal" style="background: rgba(9, 80, 64, 0.8);
             border-radius: 10px;">
             <div class="modal-content">
@@ -57,7 +57,7 @@
   <div class="modal-content">
     <h4>Introduce URLs para acceso rápido</h4>
     <!-- Formulario -->
-<form id="urlForm">
+<form id="urlForm" onsubmit="return false;">
   <label for="urlInput">Introduce una URL:</label>
   <input type="url" id="urlInput" required />
   <button type="button" id="saveUrlBtn">Guardar URL</button>
@@ -65,7 +65,7 @@
 
 <!-- Contenedor de resultados -->
 <h4>Enlaces guardados</h4>
-<div id="iconsContainer"></div>
+<div id="iconsContainer" class="row"></div>
 
 <script src="script.js"></script>
 
@@ -114,7 +114,7 @@
   </form>
         <div><div class="input-field">
   </div>
-<script src="/Backend/script.js"></script>
+<script src="script.js"></script>
  </div>
  <br>
 </div>
@@ -177,7 +177,7 @@
   <!-- SCRIPTS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </div>
-  <script src="/Backend/login.js"></script>
+  <script src="login.js"></script>
 
   <script>
    document.addEventListener("DOMContentLoaded", function () {
@@ -194,7 +194,7 @@
     // Agregar evento al botón si existe
     const saveBtn = document.getElementById("saveUrlBtn");
     if (saveBtn) {
-      saveBtn.addEventListener("click", saveUrl);
+      saveBtn.addEventListener("click", saveUrlBtn);
     }
 
     // Obtener credenciales desde localStorage
@@ -209,6 +209,6 @@
   });
 
   </script>
-  <script src="/Backend/script.js"defer></script>
+  <script src="script.js"defer></script>
 </body>
 </html>
