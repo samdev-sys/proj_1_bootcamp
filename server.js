@@ -158,6 +158,9 @@ app.get('/urls/:userId', (req, res) => {
     res.status(200).json(results);
   });
 });
+// eliminar URLs
+app.delete
+
 app.listen(PORT, ()=>{
     console.log('Servidor corriendo en http://localhost:3000')
 })

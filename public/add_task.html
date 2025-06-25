@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -67,7 +68,6 @@
 <h4>Enlaces guardados</h4>
 <div id="iconsContainer" class="row"></div>
 
-<script src="script.js"></script>
 
   </div>
 
@@ -114,7 +114,7 @@
   </form>
         <div><div class="input-field">
   </div>
-<script src="script.js"></script>
+
  </div>
  <br>
 </div>
@@ -191,22 +191,10 @@
     const collapsibles = document.querySelectorAll(".collapsible");
     M.Collapsible.init(collapsibles);
 
-    // Agregar evento al botón si existe
-    const saveBtn = document.getElementById("saveUrlBtn");
-    if (saveBtn) {
-      saveBtn.addEventListener("click", saveUrlBtn);
-    }
-
-    // Obtener credenciales desde localStorage
-    const user = localStorage.getItem("user");
-    const password = localStorage.getItem("password");
-
-    if (user && password) {
-      displayUrls(user, password);
-    } else {
-      console.warn("Credenciales no definidas");
-    }
   });
+  if(!localStorage.getItem("userId")){
+    window.location.replace("/index.html");
+  }
 
   </script>
   <script src="script.js"defer></script>
