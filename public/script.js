@@ -134,10 +134,38 @@ async function displayUrls(userId) {
           <span class="card-title"><i class="material-icons left">link</i>URL</span>
           <p style="word-wrap: break-word;"><a href="${url}" target="_blank" class="yellow-text text-lighten-3">${url}</a></p>
         </div>
+        <div class="card-action">
+        <button class="btn red" onclick="deleteUrl(${id})">
+          <i  class="material-icons">delete</i>
+        </button>
+        </div>
       `;
       container.appendChild(card);
     });
   } catch (err) {
     console.error("Error al cargar URLs:", err.message);
   }
+}
+
+
+async function deleteUrl(id) {
+  const confirmDelete = confirm("Estas seguro de eliminar?");
+  if (!confirmDelete) return
+   try{
+    const response = await fetch('http://localhost:3000/urls/${id}',{
+      method:"DELETE"
+    });
+
+    const result = await response .json();
+    if(!response.ok){
+      alert(result.message || "Error al eliminar la URL");
+      return;
+    }
+    const userId = parseInt (localStorage.getItem(userId));
+    displayUrls(userId);
+   }catch(err){
+    console.error("Error al eliminar URL:", err.message);
+    alert("no se pude eliminarla URL");
+   }
+  
 }
