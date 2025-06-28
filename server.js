@@ -1,8 +1,9 @@
 const express = require('express');
+const app= express();
 const cors =require('cors');
 const db=require('./ConectBD/conexion_MySQL');
 const bodyParser = require('body-parser');
-const app= express();
+
 const PORT =3000;
 
 
@@ -265,3 +266,12 @@ app.delete
 app.listen(PORT, ()=>{
     console.log('Servidor corriendo en http://localhost:3000')
 })
+
+if (require.main === module){
+  const PORT = process.env.PORT || 3000 ;
+  app.listen(PORT, () =>{
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  })
+}
+
+module.exports = app;
