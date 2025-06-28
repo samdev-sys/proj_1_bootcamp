@@ -309,7 +309,12 @@ async function actualizarTarea(id){
 
     document.getElementById("asunto").value=tarea.asunto;
     document.getElementById("descripcion").value= tarea.descripcion;
-    document.querySelector(`input[name="Estado"][value="${tarea.Estado}"]`).checked= true;
+    const estadoInput =document.querySelector(`input[name="Estado"][value="${tarea.Estado}"]`);
+    if(estadoInput){
+      estadoInput.checked =true;
+    }else{
+      console.warn(`no se encontro un input estado con valor :${tarea.Estado}`);
+    }
 
     document.getElementById("taskForm").setAttribute("data-editing-id", id);
     const modal = M.Modal.getInstance(document.getElementById("modal2"));
@@ -318,4 +323,33 @@ async function actualizarTarea(id){
   } catch(err){
     console.error("Error al traer la tarea :", err.message);
   }
+}
+
+async function eliminarTarea(id){
+  const confirmacion= confirm("confirmas para eliminar?");
+  if(!confirmacion) return;
+
+  try{
+    const response = await fetch(`http://localhost:3000/tasks/${id}`,{
+      method:"DELETE"
+    });
+
+    const result = await response.json();
+
+    if(!response.ok) throw new Error (result.message || "Error al eliminar");
+    M.toast({html: "Tarea eliminada",classes : "green"});
+    const userId=parseInt(localStorage.getItem("userId"));
+    displayTasks(userId);
+  } catch(err){
+    console.error("error al eliminar tarea", err.message);
+    M.toast({html:"no se pudo eliminar tarea", classes: "red"});
+  }
+
+}
+
+// registrar usuario
+
+async function registroUsuario() {
+  
+  
 }
