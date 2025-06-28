@@ -22,7 +22,7 @@
     }
   </style>
 </head>
-<body>
+<body data-private="true">
 
   <!-- NAVBAR -->
   <nav>
@@ -74,58 +74,73 @@
   
 </div>
 
-<a class="waves-effect waves-light btn modal-trigger blue darken-4"  style="border-radius: 8px;"      href="#modal2"> agregar tarea</a>
-  <div id="modal2" class="modal">
-    <div class="modal-content" style="border: 8px ; border-radius: 8px;">
-        <h1>Agregar tarea</h1>
-       
-        <label for="" class="txt">Asunto</label>
-        <input type="text" id="Nombres" name="nombres">
-        <br>
-        <label for="" style="color: rgb(36, 147, 147); font-family:Roboto Mono, monospace;font-size: 20px;">Adjuntar archivos </label>
-        <input type="file" name="file">
-        <br>
-        <label for="" style="color: rgb(36, 147, 147); font-family:Roboto Mono, monospace;font-size: 20px;">Adjuntar urls</label>
-        <input type="url" name="url">
-        <br>
-        <label for="" class="txt">Descripcion</label>
-        <textarea name="Descripcion" id=""></textarea>
-        <br>
-  <form action="#">
-    <p>
-      <label>
-        <input name="group1" type="radio" checked />
-        <span> Por iniciar</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input name="group1" type="radio" />
-        <span>En proceso</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input class="with-gap" name="group1" type="radio"  />
-        <span>Finalizado</span>
-      </label>
-    </p>
-    
-  </form>
-        <div><div class="input-field">
-  </div>
+<!-- Botón para abrir modal de tareas -->
+<a class="waves-effect waves-light btn modal-trigger blue darken-4" style="border-radius: 8px;" href="#modal2">AGREGAR TAREA</a>
 
- </div>
- <br>
+<!-- Modal de Agregar Tarea -->
+<div id="modal2" class="modal">
+  <div class="modal-content" style="border-radius: 8px;">
+    <h1>AGREGAR TAREA</h1>
+    <form id="taskForm">
+      <label for="asunto" class="txt">Asunto</label>
+      <input type="text" id="asunto" name="asunto" required>
+
+      <label for="archivo" style="color: rgb(36, 147, 147); font-family: Roboto Mono, monospace;">Adjuntar archivos</label>
+      <input type="file" id="archivo" name="file">
+
+      <label for="store_URL" style="color: rgb(36, 147, 147); font-family: Roboto Mono, monospace;">Adjuntar URLs</label>
+      <input type="url" id="store_URL" name="url">
+
+      <label for="descripcion" class="txt">Descripción</label>
+      <textarea id="descripcion" name="descripcion"></textarea>
+
+      <p>
+        <label>
+          <input name="Estado" type="radio" value="Por iniciar" checked />
+          <span>Pendientes</span>
+        </label>
+        <label>
+          <input name="Estado" type="radio" value="En proceso" />
+          <span>En proceso</span>
+        </label>
+        <label>
+          <input name="Estado" type="radio" value="Finalizado" />
+          <span>Finalizado</span>
+        </label>
+      </p>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn blue darken-4" style="border-radius: 4px;">Enviar</button>
+      </div>
+    </form>
+  </div>
 </div>
+
+<!-- Botón para abrir modal de contactos -->
+<a class="waves-effect waves-light btn modal-trigger" href="#modal3">Contactos/miembros</a>
+
+<!-- Modal de Contactos -->
+<div id="modal3" class="modal" style="border-radius: 8px;">
+  <div class="modal-content">
+    <h1>Agregar Contacto</h1>
+
+    <label for="nombreContacto" class="txt">Nombre</label>
+    <input type="text" id="nombreContacto" name="nombres">
+
+    <label for="usuarioContacto" class="txt">Usuario</label>
+    <input type="text" id="usuarioContacto" name="User">
+
+    <label for="foto" style="color: rgb(13, 93, 93); font-family: Roboto Mono, monospace;">Sube tu foto</label>
+    <input type="file" id="foto" name="foto">
+
+    <label for="datosAlternos" class="txt">Datos alternos</label>
+    <input type="text" id="datosAlternos" name="datosAlternos">
+
     <div class="modal-footer">
-      <button class="but"><a href="">enviar</a></button>
+      <button type="submit" class="btn green">Guardar</button>
     </div>
   </div>
-
-
-
-    <a class="waves-effect waves-light btn modal-trigger" href="#modal3">Contactos/miembros</a>
+</div>
 
   <!-- Modal Structure -->
   <div id="modal3" class="modal" style="border-radius: 8px;">
@@ -160,14 +175,16 @@
     <li>
       <div class="collapsible-header"><i class="material-icons cyan-text">hourglass_empty</i>En proceso</div>
       <div class="collapsible-body">
+        <div id="enproceso"></div>
+      </div>
     </li>
     <li>
       <div class="collapsible-header"><i class="material-icons  red-text">hourglass_full</i>Pendientes</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      <div class="collapsible-body"><div id="pendientes"></div></div>
     </li>
     <li>
       <div class="collapsible-header"><i class="material-icons teal-text">check</i>Finalizado</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      <div class="collapsible-body"><div id="finalizado"></div></div>
     </li>
   </ul>
 </div>
@@ -176,7 +193,7 @@
 
   <!-- SCRIPTS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  </div>
+  
   <script src="login.js"></script>
 
   <script>

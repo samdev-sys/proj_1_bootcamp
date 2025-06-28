@@ -5,6 +5,31 @@ const bodyParser = require('body-parser');
 const app= express();
 const PORT =3000;
 
+
+app.get("/tasks/one/:id", (req, res) => {
+  const { id } = req.params;
+  const sql = `
+    SELECT id_tarea, asunto, descripcion, Estado
+    FROM tasks
+    WHERE id_tarea = ?
+  `;
+
+  db.query(sql, [id], (err, rows) => {
+    if (err) {
+      console.error("Error al obtener tarea:", err);
+      return res.status(500).json({ message: "Error al consultar la tarea" });
+    }
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: "Tarea no encontrada" });
+    }
+
+    res.json(rows[0]); // devolvemos solo la tarea
+  });
+});
+
+
+
 app.use (express.json());
 app.use (cors());
 
@@ -59,47 +84,123 @@ app.delete('/users/:id', (req, res)=>{
 
 // CRUD para tasks
 
-app.post('/tasks',(req,res) =>{
-    const { user, asunto, descripcion, store_URL, tipo_archivo, fecha_de_creacion, Estado} =req.body;
-    const sql = 'INSERT INTO tasks (user, asunto, descripcion, store_URL, `tipo_archivo`, fecha_de_creacion, Estado) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    db.query(sql, [ user, asunto, descripcion, store_URL, tipo_archivo, fecha_de_creacion, Estado], (err, result) => {
-    if (err) return res.status(500).send(err);
-    res.send({ message: 'tarea creada' });
-});
-});
+app.post("/tasks", (req, res) => {
+  const {
+    user_id,
+    asunto,
+    descripcion,
+    store_URL,
+    tipo_archivo,
+    fecha_de_creacion,
+    Estado,
+  } = req.body;
 
-app.get('/tasks', (req,res)=>{
-    const sql='SELECT * FROM tasks';
-    db.query(sql, (err, results)=>{
-        if(err) return res.status (500).send (err);
-        res.send(results);
-
+  // Validación básica
+  if (!user_id || !asunto || !descripcion || !Estado) {
+    return res.status(400).json({
+      message: "Faltan campos requeridos: usuario, asunto, descripción o estado.",
     });
-});
-app.put('/tasks/:id', (req, res) => {
-    const tasksId = req.params.id;
-    const { user, asunto, descripcion, store_URL, tipo_archivo, fecha_de_creacion, Estado } = req.body;
+  }
 
-    if (!user || !asunto || !descripcion || !store_URL || ! tipo_archivo || !fecha_de_creacion || !Estado) {
+  const sql = `
+    INSERT INTO tasks (
+      user_id, asunto, descripcion, store_URL, tipo_archivo, fecha_de_creacion, Estado
+    ) VALUES (?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  const values = [
+    user_id,
+    asunto,
+    descripcion,
+    store_URL || "",
+    tipo_archivo || "",
+    fecha_de_creacion || new Date().toISOString().slice(0, 19).replace("T", " "),
+    Estado,
+  ];
+
+  db.query(sql, values, (err, result) => {
+    if (err) {
+      console.error("Error al insertar tarea:", err);
+      return res.status(500).json({ message: "Error interno al crear tarea." });
+    }
+
+    res.status(201).json({
+      message: "Tarea creada correctamente",
+      id_tarea: result.insertId,
+    });
+  });
+});
+
+app.get("/tasks/:userId", (req, res) => {
+  const { userId } = req.params;
+
+  const sql = `
+    SELECT id_tarea, asunto, descripcion, Estado
+    FROM tasks
+    WHERE user_id = ?
+  `;
+
+  db.query(sql, [userId], (err, rows) => {
+    if (err) {
+      console.error("Error al obtener tareas:", err);
+      return res.status(500).json({ message: "Error al consultar las tareas" });
+    }
+
+    res.json(rows);
+  });
+});
+
+
+
+app.put('/tasks/:id', (req, res) => {
+  console.log("Cuerpo recibido:", req.body);
+
+    const tasksId = req.params.id;
+    const { user_id, asunto, descripcion, store_URL = "",
+    tipo_archivo = "",
+    fecha_de_creacion = new Date().toISOString().slice(0, 19).replace("T", " "),
+    Estado
+  } = req.body;
+    if (!user_id || !asunto || !descripcion ||!Estado) {
         return res.status(400).send({ message: 'Faltan datos en la solicitud' });
     }
 
-    const sql = 'UPDATE  tasks SET user=?, asunto=?, descripcion=?, store_URL=?, tipo_archivo=?, fecha_de_creacion=?, Estado=? WHERE id_tarea=?';
-    db.query(sql, [user, asunto, descripcion, store_URL, tipo_archivo, fecha_de_creacion, Estado, tasksId], (err, result) => {
-        if (err) return res.status(500).send(err);
-        if (result.affectedRows === 0) return res.status(404).send({ message: 'la tarea no existe' });
-        res.send({ message: `tarea con ID ${tasksId} actualizada correctamente` });
-    });
+    const sql = 'UPDATE  tasks SET user_id=?, asunto=?, descripcion=?, store_URL=?, tipo_archivo=?, fecha_de_creacion=?, Estado=? WHERE id_tarea=?';
+    const values = [
+    user_id,
+    asunto,
+    descripcion,
+    store_URL,
+    tipo_archivo,
+    fecha_de_creacion,
+    Estado,
+    tasksId
+  ];
+    
+  db.query(sql, values, (err, result) => {
+    if (err) {
+      console.error("Error al actualizar tarea:", err);
+      return res.status(500).json({ message: "Error interno al actualizar tarea." });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Tarea no encontrada" });
+    }
+
+    res.json({ message: `Tarea con ID ${tasksId} actualizada correctamente` });
+  });
 });
+
+
 app.delete('/tasks/:id', (req, res)=>{
-    const userId=  req.params.id;
+    const tasksId=  req.params.id;
     const sql='DELETE  FROM tasks WHERE id_tarea=?';
 
-    db.query(sql,[userId],(err,result)=>{
+    db.query(sql,[tasksId],(err,result)=>{
         if(err) return res.status(500).send (err);
         if(result.affectedRows === 0 ) return  res.status(404).send({message:'tarea no encontrada'});
 
-        res.send({ message: `tarea con ID ${userId} eliminado correctamente` });
+        res.send({ message: `tarea con ID ${tasksId} eliminado correctamente` });
     });
 });
 
@@ -152,14 +253,24 @@ app.post('/urls', (req, res) => {
 // GET: mostrar URLs
 app.get('/urls/:userId', (req, res) => {
   const { userId } = req.params;
-  const sql = "SELECT url FROM urls WHERE user_id = ?";
+  const sql = "SELECT id, url FROM urls WHERE user_id = ?";
   db.query(sql, [userId], (err, results) => {
     if (err) return res.status(500).json({ error: err });
     res.status(200).json(results);
   });
 });
 // eliminar URLs
-app.delete
+app.delete ('/urls/:id',(req,res)=>{
+    const {id}=req.params;
+    const sql= "DELETE FROM urls WHERE id =?";
+    db.query(sql, [id],(err,result)=>{
+        if(err) return res.status (500).json({error:err});
+        if(result.affectedRows===0){
+            return res.status(404).json({message:'URL no encontrada'});
+        }
+        res.status(200).json({message:'URL eliminada correctamente'});
+    });
+});
 
 app.listen(PORT, ()=>{
     console.log('Servidor corriendo en http://localhost:3000')
