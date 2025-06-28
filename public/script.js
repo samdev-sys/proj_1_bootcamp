@@ -134,6 +134,7 @@ async function displayUrls(userId) {
       return;
     }
 
+
     urls.forEach(({ id, url }) => {
   const card = document.createElement("div");
   card.className = "card blue-grey darken-1 white-text hoverable";
@@ -152,6 +153,24 @@ async function displayUrls(userId) {
   `;
   container.appendChild(card);
 });
+
+
+    urls.forEach(({ url }) => {
+      const card = document.createElement("div");
+      card.className = "card blue-grey darken-1 white-text hoverable";
+      card.innerHTML = `
+        <div class="card-content">
+          <span class="card-title"><i class="material-icons left">link</i>URL</span>
+          <p style="word-wrap: break-word;"><a href="${url}" target="_blank" class="yellow-text text-lighten-3">${url}</a></p>
+        </div>
+        <div class="card-action">
+        <button class="btn red" onclick="deleteUrl(${id})">
+          <i  class="material-icons">delete</i>
+        </button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
 
   } catch (err) {
     console.error("Error al cargar URLs:", err.message);

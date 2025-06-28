@@ -260,17 +260,7 @@ app.get('/urls/:userId', (req, res) => {
   });
 });
 // eliminar URLs
-app.delete ('/urls/:id',(req,res)=>{
-    const {id}=req.params;
-    const sql= "DELETE FROM urls WHERE id =?";
-    db.query(sql, [id],(err,result)=>{
-        if(err) return res.status (500).json({error:err});
-        if(result.affectedRows===0){
-            return res.status(404).json({message:'URL no encontrada'});
-        }
-        res.status(200).json({message:'URL eliminada correctamente'});
-    });
-});
+app.delete
 
 app.listen(PORT, ()=>{
     console.log('Servidor corriendo en http://localhost:3000')
