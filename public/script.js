@@ -348,8 +348,59 @@ async function eliminarTarea(id){
 }
 
 // registrar usuario
+document.addEventListener ("DOMContentLoaded", function (){
+  M.FormSelect.init(document.querySelectorAll("select"));
+  M.Slider.init(document.querySelectorAll(".slider"),{
+    indicators: true,
+    height:400,
+    interval:5000
+  });
 
-async function registroUsuario() {
-  
-  
-}
+  const form = document.querySelector("form");
+  const nombre = document.getElementById("Nombres");
+  const usuario = document.querySelector("input[type='text']:nth-of-type(2)");
+  const email = document.querySelector("input[type='email']");
+  const password = document.querySelector("input[type='password']");
+  const pregunta = document.getElementById("pregunta");
+  const respuesta = document.querySelector("input[type='text']:last-of-type");
+  const foto = document.querySelector("input[type='file']");
+
+  form.addEventListener("submit", async function(e){
+    if(!nombre.value || !usuario.value || !email.value || !password.value || !pregunta.value || !respuesta.value){
+      alert("completa los campos")
+      return;
+    }
+    const formData = new FormData(form);
+
+    try{
+        const res = await fetch("http://localhost:3000/users",{
+        method : "POST",
+        body : formData
+      });
+      const data = await res.json();
+      alert (data.message);
+      if(res.ok){
+        M.toast ({
+          html:`<i class="material-icons left">check_circle</i> ${data.message}`,
+          classes :"green darken-2 white-text rounded",
+          displayLength: 4000
+        });
+        form.reset();
+
+      }else {
+         M.toast({
+    html: `<i class="material-icons left">error</i> ${data.message || "Error en el registro"}`,
+    classes: "red darken-2 white-text rounded",
+    displayLength: 4000
+  });
+      }
+    }
+    catch (err){
+      console.error ( "Error  al registrar usuario", err);
+      alert("Error de conexion con el servidor");
+    }
+  });
+
+
+
+});

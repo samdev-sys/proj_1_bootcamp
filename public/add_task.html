@@ -26,24 +26,26 @@
 
   <!-- NAVBAR -->
   <nav>
-    <div class="nav-wrapper light-green lighten-1">
+    <div class="nav-wrapper light- cyan darken-4">
       <a href="#" class="brand-logo" style=" display: flex; justify-content: center;">taskFlow</a>
       <ul id="nav-mobile" style="display: flex; justify-content: flex-end;">
         <li>
           <a href="/urls.html"><img src="./img/icons8-menú-cuadrado-96.png" alt="apps" height="65px"></a>
         </li>
-        <li><img src="./img/icons8-salida.gif" height="65px" alt="left"onclick="abrirModal()">
-        <div id="confirmacionmodal" class="modal" style="background: rgba(9, 80, 64, 0.8);
-            border-radius: 10px;">
-            <div class="modal-content">
-              <h4 style="color: aqua;">¿Seguro que deseas cerrar sesión?</h4>
-              <p style="font-size: 20px; color:rgb(44, 131, 207); ">Si cierras sesión, tendrás que volver a ingresar tus credenciales.</p>
-        </div>
-        
-            <button class="btn green" onclick="cerrarSesion()">Sí, cerrar sesión</button>
-            <button class="btn grey" onclick="cerrarModal()">Cancelar</button>
-        
-            </div></div></li>
+        <li>
+  <img src="./img/icons8-salida.gif" height="65px" alt="Cerrar sesión" onclick="abrirModal()">
+  <div id="confirmacionmodal" class="modal" style="border-radius: 10px; overflow: hidden;">
+    <div class="modal-content" style="background-color: #01579b; padding-bottom: 0;">
+      <h4 style="color: #fff;">¿Seguro que deseas cerrar sesión?</h4>
+      <p style="font-size: 18px; color: #bbdefb;">Si cierras sesión, tendrás que volver a ingresar tus credenciales.</p>
+    </div>
+    <div class="modal-footer" style="background-color: #01579b;">
+      <button class="btn" style="background-color: #006064; margin-right: 10px;" onclick="cerrarSesion()">Sí, cerrar sesión</button>
+      <button class="btn grey darken-2" onclick="cerrarModal()">Cancelar</button>
+    </div>
+  </div>
+</li>
+
       </ul>
 
     </div>
@@ -117,10 +119,10 @@
 </div>
 
 <!-- Botón para abrir modal de contactos -->
-<a class="waves-effect waves-light btn modal-trigger" href="#modal3">Contactos/miembros</a>
+<!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal3">Contactos/miembros</a> -->
 
 <!-- Modal de Contactos -->
-<div id="modal3" class="modal" style="border-radius: 8px;">
+<!-- <div id="modal3" class="modal" style="border-radius: 8px;">
   <div class="modal-content">
     <h1>Agregar Contacto</h1>
 
@@ -141,31 +143,7 @@
     </div>
   </div>
 </div>
-
-  <!-- Modal Structure -->
-  <div id="modal3" class="modal" style="border-radius: 8px;">
-    <div class="modal-content">
-     <h1>Agregar Contacto</h1>
-       
-        <label for="" class="txt">Nombre</label>
-        <input type="text" id="Nombres" name="nombres">
-        <br>
-        <label for="" class="txt">Usuario</label>
-        <input type="text" id="Nombres" name="User">
-        <br>
-        <label for="" style="color: rgb(13, 93, 93); font-family:Roboto Mono, monospace;">Sube tu foto </label>
-        <input type="file" name="foto">
-        <br>
-        <label for="" class="txt">Datos alternos</label>
-        <input type="text">
-        <br>
-         <div class="container">
-        <input class="but" type="submit" value="Guardar">
-     </div>
-
-    </div>
-    
-  </div>
+ -->
   
 
 </main>

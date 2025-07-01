@@ -3,8 +3,21 @@ const app= express();
 const cors =require('cors');
 const db=require('./ConectBD/conexion_MySQL');
 const bodyParser = require('body-parser');
+const multer =require("multer");
+const upload= multer({dest:"uploads/"});
+
 
 const PORT =3000;
+
+
+app.use (express.json());
+app.use (cors());
+
+app.use(express.static('public'));
+app.use(express.urlencoded({extended:true}));
+
+
+
 
 
 app.get("/tasks/one/:id", (req, res) => {
@@ -31,21 +44,39 @@ app.get("/tasks/one/:id", (req, res) => {
 
 
 
-app.use (express.json());
-app.use (cors());
-
-app.use(express.static('public'));
-app.use(express.urlencoded({extended:true}));
-
 // CRUD para users
-app.post('/users',(req,res) =>{
-    const { nombre,usuario, email,password, pregunta, respuesta} =req.body;
+app.post('/users',upload.single("foto"), async (req,res) =>{
+  try{const { nombre,usuario, email,password, pregunta, respuesta} =req.body;
+    const imagen =req.file;
+    if(!nombre || !usuario || !email || !password || !pregunta || !respuesta ){
+      return res.status(400).json({message:"faltan datos "});
+    }
+     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: "Email no válido" });
+    }
+
+    // Validación de longitud de la contraseña
+    if (password.length < 6) {
+      return res.status(400).json({ message: "La contraseña debe tener al menos 6 caracteres" });
+    }
+
+    // Encriptar la contraseña
     const sql = 'INSERT INTO users (nombre, usuario, email, password, pregunta, respuesta) VALUES (?, ?, ?, ?, ?, ?)';
-    db.query(sql, [ nombre, usuario, email, password, pregunta, respuesta], (err, result) => {
-    if (err) return res.status(500).send(err);
-    res.send({ message: 'Usuario registrado' });
+    const values= [nombre, usuario, email, password, pregunta, respuesta];
+    db.query(sql, values, (err, result) => {
+    if (err) {
+      console.error("Error al registra usuario:", err);
+      return res.status(500).json({message:"Error interno al registrar usuario"});
+    }
+    res.status(201).json({message: "usuario registrado exitosamente"});
+  });
+  }catch(error){
+    console.error("Error general:", error);
+    res.status(500).json({ message: "Error al procesar solicitud de registro" });
+  }
 });
-});
+
 
 app.get('/users', (req,res)=>{
     const sql='SELECT * FROM users';
@@ -152,7 +183,7 @@ app.get("/tasks/:userId", (req, res) => {
 });
 
 
-
+// actalizar tarea
 app.put('/tasks/:id', (req, res) => {
   console.log("Cuerpo recibido:", req.body);
 
@@ -261,11 +292,19 @@ app.get('/urls/:userId', (req, res) => {
   });
 });
 // eliminar URLs
-app.delete
+app.delete('/urls/:id', (req, res) => {
+  const { id } = req.params;
+  const sql = "DELETE FROM urls WHERE id = ?";
 
-app.listen(PORT, ()=>{
-    console.log('Servidor corriendo en http://localhost:3000')
-})
+  db.query(sql, [id], (err, result) => {
+    if (err) return res.status(500).json({ error: err });
+    if (result.affectedRows === 0) return res.status(404).json({ message: "URL no encontrada" });
+
+    res.status(200).json({ message: `URL con ID ${id} eliminada correctamente` });
+  });
+});
+
+
 
 if (require.main === module){
   const PORT = process.env.PORT || 3000 ;
@@ -273,5 +312,12 @@ if (require.main === module){
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
   })
 }
+
+// get para genPass
+
+app.get("/generar-contraseña", (req,res) =>{
+  const password= genSecPass();
+  res.json({password});
+});
 
 module.exports = app;

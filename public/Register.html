@@ -1,123 +1,121 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="shortcut icon" href="./img/ChatGPT Image 22 may 2025, 08_43_12 p.m_logo..png" type="image/x-icon">
-    <!-- Materialize CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-<!-- Íconos de Google (opcional, pero recomendado) -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Registro</title>
-     <style>
-        body{
-            background-image:url("/Frontend/img/55448.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="shortcut icon" href="./img/ChatGPT Image 22 may 2025, 08_43_12 p.m_logo..png" type="image/x-icon" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style>
+    body {
+      background-color: rgb(206, 206, 227);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+  </style>
 </head>
 <body>
- <div class="slider">
+
+  <div class="slider">
     <ul class="slides">
       <li>
-        <img src="./img/3222.png"> <!-- random image -->
+        <img src="./img/3222.png" />
         <div class="caption center-align">
-          <h3><p>AUMENTO DE PRODUCTIVIDAD AL 80%</p></h3>
+          <h3>AUMENTO DE PRODUCTIVIDAD AL 80%</h3>
           <h5 class="light grey-text text-lighten-3">taskFlow</h5>
         </div>
       </li>
       <li>
-        <img src="./img/ChatGPT Image 22 may 2025, 08_29_43 p.m._texto.png .png"> <!-- random image -->
-        <div class="caption left-align">
-        </div>
+        <img src="./img/ChatGPT Image 22 may 2025, 08_29_43 p.m._texto.png .png" />
       </li>
       <li>
-        <img src="./img/WhatsApp Image 2025-05-08 at 6.23.45 PM (2).jpeg"> <!-- random image -->
-        
+        <img src="./img/WhatsApp Image 2025-05-08 at 6.23.45 PM (2).jpeg" />
       </li>
-     
     </ul>
   </div>
-  
-  <div class="container" id="">
-    <form action="" method="post">
-        <h1> REGISTRAR USUARIO</h1>
-       
-        <label for="" class="txt">Nombres</label>
-        <input type="text" id="Nombres" name="nombres">
-        <br>
-        <label for="" style="color: rgb(15, 116, 116); font-family:Roboto Mono, monospace;">Sube tu foto </label>
-        <input type="file" name="foto">
-        <br>
-        <label for="" class="txt">Usuario</label>
-        <input type="text">
-        <br>
-        <label for="" class="txt">Email</label>
-        <input type="email">
-        <br> 
-        <label for="" class="txt">Contraseña</label>
-        <input type="password">
-        <!-- Botón para abrir el modal -->
-<a href=" http://localhost:8501", target="_blank" id="generatePass" target="_blank">puedes usar nuestro generador de contraseñas</a>
 
+  <div class="container">
+    <form action="http://localhost:3000/users" method="post" enctype="multipart/form-data" id="registroForm">
+      <h1>REGISTRAR USUARIO</h1>
 
-        <br>
+      <label class="txt">Nombres</label>
+      <input type="text" id="nombres" name="nombre" required />
 
-       <div class="input-field">
-     <select name="pregunta" id="pregunta">
-    <option value="" disabled selected style="color: aquamarine; font-family: Roboto Mono, monospace;">Seleccione una pregunta</option>
-    <option value="madre">¿Nombre de tu madre?</option>
-    <option value="mascota">¿Nombre de tu primera mascota?</option>
-    <option value="escuela">¿Nombre de tu escuela primaria?</option>
-    <option value="ciudad">¿En qué ciudad naciste?</option>
-    </select>
-    <label for="pregunta">Pregunta de seguridad</label>
-    </div>
-     <label for="" class="txt">Respuesta</label>
-     <input type="text">
+      <label class="txt">Sube tu foto</label>
+      <input type="file" name="foto" />
 
-    
-     </div>  
-     <div class="container">
-        <input class="but" type="submit" value="Registrar">
-     </div>
-    
- </div>
- </form>
+      <label class="txt">Usuario</label>
+      <input type="text" id="usuario" name="usuario" required />
 
+      <label class="txt">Email</label>
+      <input type="email" id="email" name="email" required />
 
+      <label for="password" class="txt">Contraseña</label>
+      <input type="password" id="password" name="password" required />
+      <div id="passwordResult" class="green-text text-darken-2" style="margin-top: 5px;"></div>
+      <br /><br />
+      <a href="http://localhost:8501" target="_blank">¿Prefieres usar el generador visual?</a>
 
+      <div class="input-field">
+        <select name="pregunta" id="pregunta" required>
+          <option value="" disabled selected>Seleccione una pregunta</option>
+          <option value="madre">¿Nombre de tu madre?</option>
+          <option value="mascota">¿Nombre de tu primera mascota?</option>
+          <option value="escuela">¿Nombre de tu escuela primaria?</option>
+          <option value="ciudad">¿En qué ciudad naciste?</option>
+        </select>
+        <label for="pregunta">Pregunta de seguridad</label>
+      </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('select');
-    M.FormSelect.init(elems);
-  });
+      <label class="txt">Respuesta</label>
+      <input type="text" id="respuesta" name="respuesta" required />
 
-  document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.modal');
-    M.Modal.init(elems);
+      <div class="container center-align" style="margin-top: 20px;">
+        <input class="btn green" type="submit" value="Registrar" />
+      </div>
+    </form>
+  </div>
 
-    document.getElementById("generatePass").addEventListener("click", async () => {
-        const response = await fetch("http://localhost:3000/generar-contraseña");
-        const data = await response.json();
-        document.getElementById("passwordResult").textContent = `Contraseña generada: ${data.password}`;
+  <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      M.FormSelect.init(document.querySelectorAll("select"));
+      M.Slider.init(document.querySelectorAll(".slider"));
+
+      const passwordInput = document.getElementById("password");
+      const passwordResult = document.getElementById("passwordResult");
+      const generateBtn = document.getElementById("generatePass");
+
+      if (generateBtn) {
+        generateBtn.addEventListener("click", async (e) => {
+          e.preventDefault();
+
+          try {
+            const response = await fetch("http://localhost:3000/generar-contraseña");
+            if (!response.ok) throw new Error("Error al generar contraseña");
+
+            const data = await response.json();
+
+            if (passwordInput) passwordInput.value = data.password;
+            if (passwordResult) {
+              passwordResult.textContent = `Contraseña generada: ${data.password}`;
+              passwordResult.classList.remove("red-text");
+            }
+          } catch (err) {
+            console.error("Error:", err.message);
+            if (passwordResult) {
+              passwordResult.textContent = "No se pudo generar la contraseña";
+              passwordResult.classList.add("red-text");
+            }
+          }
+        });
+      }
     });
-});
-
-     document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.slider');
-    var instances = M.Slider.init(elems, {});
-  });
-
-</script>
-
+  </script>
 </body>
 </html>
-
-
