@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Roboto+Mono&family=Roboto&display=swap');
+
+body {
+  background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('./img/55448.png');
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: "JetBrains Mono", monospace;
+  color: #096B68;
+  font-size: 32px;
+  margin-top: 40px;
+}
+
+label {
+  font-family: "Roboto Mono", monospace;
+  color: #129990;
+  font-size: 18px;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.btn-custom {
+  background-color: #129990;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.page-footer {
+  background-color: #096B68;
+}
+
+.page-footer h5 {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.page-footer a {
+  font-family: "Roboto Mono", monospace;
+}

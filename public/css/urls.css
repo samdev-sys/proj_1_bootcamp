@@ -1,0 +1,123 @@
+body {
+  background-image: url("../img/15706.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Sección de bienvenida */
+.info-superior{
+  background-color: #40cee099; /* Fondo translúcido */
+  padding: 20px 40px;
+  margin: 20px auto;
+  border-radius: 12px;
+  width: fit-content;
+  text-align: center;
+  color: white;
+  box-shadow: 0 8px 30px rgba(189, 219, 253, 0.575);
+  animation: fadeInTop 1s ease-out forwards;
+  opacity: 0;
+  transform: translateY(-15px);
+}
+
+@keyframes fadeInTop {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header-text h5 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.header-text p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* Encabezado APPs */
+.app-header {
+  background-color: #40cee099; 
+  max-width: 100%;
+  width: calc(100% - 36%) ;
+  margin: 20px auto;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.app-header:hover {
+  background-color: #01aa96;
+}
+
+.app-header:active {
+  background-color: #a5a33c7c;
+}
+
+.app-title {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+
+.app-header:hover .app-title {
+  color: #e0f7fa;
+}
+
+.app-icon {
+  height: 36px;
+margin-bottom: 0.5rem;
+}
+/* Contenedor de íconos */
+.icon-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Tarjetas individuales */
+.icon-card {
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+  text-align: center;
+}
+
+.icon-card:hover {
+  background-color: #c8e6c9;
+  transform: scale(1.05);
+}
+
+.icon-card i {
+  font-size: 36px;
+}
+
+.icon-card img {
+  height: 36px;
+  margin-bottom: 0.5rem;
+}
+
+.icon-card span {
+  font-size: 14px;
+  color: #333;
+}

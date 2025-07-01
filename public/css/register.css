@@ -1,0 +1,116 @@
+/* Tipografía general */
+body, input, select, label, h1, h3, h5 {
+  font-family: 'Roboto Mono', monospace;
+  color: #fff;
+}
+
+/* Fondo y opacidad para formularios */
+form {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 15px;
+  margin-top: 50px;
+}
+
+/* Estilo para títulos */
+h1 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #25dff8;
+}
+
+/* Etiquetas */
+label.txt {
+  font-size: 25px;
+  color: #94eecb;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"],
+select {
+  background-color: #ffffffcc;
+  color: #000;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Botón de enviar */
+input.but {
+  background-color: #26a69a;
+  color: white;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+input.but:hover {
+  background-color: #00796b;
+}
+
+/* Enlace del generador de contraseñas */
+#generatePass {
+  display: inline-block;
+  margin-top: 30px;
+  color: #94eecb;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+#generatePass:hover {
+  color: #51ff51;
+}
+
+/* Slider */
+.slider {
+  margin-top: 0;
+  height: 400px;
+}
+
+.slider .slides li img {
+  filter: brightness(0.8);
+}
+
+.caption h3 p {
+  font-size: 2.2rem;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  display: inline-block;
+  border-radius: 8px;
+}
+
+.caption h5 {
+  background: rgb(121, 134, 247);
+  padding: 6px 10px;
+  border-radius: px;
+}
+
+/* Contenedor centrado */
+.container {
+  max-width: 600px;
+}
+.input-field {
+background-color: #ffffffcc;
+  color: #000;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.txt {
+  font-size: 25px;
+  color: #94eecb;
+}

@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="shortcut icon" href="./img/ChatGPT Image 22 may 2025, 08_43_12 p.m_logo..png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/recupera.css">
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
+
     
     <!-- Materialize CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
     <title>Recuperar Contraseña</title>
@@ -20,20 +21,42 @@
             font-family: sans-serif;
             background-attachment: fixed;
         }
-       .container {
+    
+        .container {
             display: flex;
             max: width 900px;
             margin: auto;
             padding: 40px;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgb(173, 236, 220);
             border-radius: 10px;
-            box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
         }
+    
         h1 {
             color: rgb(9, 106, 151);
         }
+    
+        label.txt {
+            font-family: var(--font1);
+            font-size: 20px;
+            color: var(--color4);
+            margin-bottom: 8px;
+        }
+    
+        input[type="email"],
+        input[type="text"],
+        select {
+            padding: 12px;
+            border: 2px solid var(--color1);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: var(--font2);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+    
     </style>
-</head>
+    </head>
 <body>
     <div class="container">
         <h1>Recuperar Contraseña</h1>

@@ -1,84 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro</title>
-  <link rel="stylesheet" href="./styles.css" />
-  <link rel="shortcut icon" href="./img/ChatGPT Image 22 may 2025, 08_43_12 p.m_logo..png" type="image/x-icon" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="./css/register.css">
+  <link rel="shortcut icon" href="../Frontend/img/ChatGPT Image 22 may 2025, 08_43_12 p.m_logo..png" type="image/x-icon">
+
+  <!-- Materialize CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
   <style>
     body {
-      background-color: rgb(206, 206, 227);
+      background-image: url('https://exb.de/wp-content/uploads/2023/12/Banner-Machine-Learning-1024x655.jpg');
       background-repeat: no-repeat;
       background-size: cover;
       background-attachment: fixed;
     }
   </style>
 </head>
+
 <body>
 
+  <!-- SLIDER -->
   <div class="slider">
     <ul class="slides">
       <li>
-        <img src="./img/3222.png" />
+        <img src="./img/3222.png" alt="Productividad"> 
         <div class="caption center-align">
-          <h3>AUMENTO DE PRODUCTIVIDAD AL 80%</h3>
+          <h3><p>AUMENTO DE PRODUCTIVIDAD AL 80%</p></h3>
           <h5 class="light grey-text text-lighten-3">taskFlow</h5>
         </div>
       </li>
       <li>
-        <img src="./img/ChatGPT Image 22 may 2025, 08_29_43 p.m._texto.png .png" />
+        <img src="./img/ChatGPT Image 22 may 2025, 08_29_43 p.m._texto.png .png" alt="Texto Promocional"> 
+        <div class="caption left-align"></div>
       </li>
       <li>
-        <img src="./img/WhatsApp Image 2025-05-08 at 6.23.45 PM (2).jpeg" />
+        <img src="./img/WhatsApp Image 2025-05-08 at 6.23.45 PM (2).jpeg" alt="Cuenta gratuita"> 
+        <div class="caption right-align">
+          <h3><p>Obtenga una cuenta gratis para comprobar la potencia de taskFlow</p></h3>
+          <h5 class="light grey-text text-lighten-3">¡Compruébelo!</h5>
+        </div>
       </li>
     </ul>
   </div>
 
+  <!-- FORMULARIO -->
   <div class="container">
-    <form action="http://localhost:3000/users" method="post" enctype="multipart/form-data" id="registroForm">
+    <form action="" method="post">
       <h1>REGISTRAR USUARIO</h1>
 
-      <label class="txt">Nombres</label>
-      <input type="text" id="nombres" name="nombre" required />
+      <label for="nombres" class="txt">Nombres</label>
+      <input type="text" id="nombres" name="nombres">
 
-      <label class="txt">Sube tu foto</label>
-      <input type="file" name="foto" />
+      <label for="foto" class="txt">Sube tu foto</label>
+      <input type="file" name="foto" id="foto">
 
-      <label class="txt">Usuario</label>
-      <input type="text" id="usuario" name="usuario" required />
+      <label for="usuario" class="txt">Usuario</label>
+      <input type="text" id="usuario" name="usuario">
 
-      <label class="txt">Email</label>
-      <input type="email" id="email" name="email" required />
+      <label for="email" class="txt">Email</label>
+      <input type="email" id="email" name="email">
 
       <label for="password" class="txt">Contraseña</label>
-      <input type="password" id="password" name="password" required />
-      <div id="passwordResult" class="green-text text-darken-2" style="margin-top: 5px;"></div>
-      <br /><br />
-      <a href="http://localhost:8501" target="_blank">¿Prefieres usar el generador visual?</a>
+      <input type="password" id="password" name="password">
 
+      <!-- Enlace generador de contraseña -->
+      <a href="http://localhost:8501" target="_blank" id="generatePass">Puedes usar nuestro generador de contraseñas</a>
+      <p id="passwordResult" style="color: #f38080; font-weight: bold;"></p>
+
+<br>
+      <!-- Pregunta de seguridad -->
+       <div class="text">
+           <label for="pregunta" class="txt">Pregunta de seguridad</label>
+        </div>
       <div class="input-field">
-        <select name="pregunta" id="pregunta" required>
+        <select name="pregunta" id="pregunta">
+          <br>
           <option value="" disabled selected>Seleccione una pregunta</option>
           <option value="madre">¿Nombre de tu madre?</option>
           <option value="mascota">¿Nombre de tu primera mascota?</option>
           <option value="escuela">¿Nombre de tu escuela primaria?</option>
           <option value="ciudad">¿En qué ciudad naciste?</option>
         </select>
-        <label for="pregunta">Pregunta de seguridad</label>
+       
       </div>
 
-      <label class="txt">Respuesta</label>
-      <input type="text" id="respuesta" name="respuesta" required />
+      <label for="respuesta" class="txt">Respuesta</label>
+      <input type="text" id="respuesta" name="respuesta">
 
-      <div class="container center-align" style="margin-top: 20px;">
-        <input class="btn green" type="submit" value="Registrar" />
-      </div>
+      <input class="but" type="submit" value="Registrar">
     </form>
   </div>
-
   <!-- Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 

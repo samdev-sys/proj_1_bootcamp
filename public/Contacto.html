@@ -1,47 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="shortcut icon" href="./img/ChatGPT Image 22 may 2025, 08_43_12 p.m_logo..png" type="image/x-icon"> 
-    <!-- Materialize CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contáctenos</title>
 
-<!-- Íconos de Google (opcional, pero recomendado) -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="./styles.css">
-<title>Contactenos</title>
+  <link rel="shortcut icon" href="./img/ChatGPT Image 22 may 2025, 08_43_12 p.m_logo..png" type="image/x-icon" />
+  
+  <!-- Materialize CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+  
+  <!-- Google Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <!-- Custom Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Roboto+Mono&family=Roboto&display=swap" rel="stylesheet" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./css/contactos.css" />
 </head>
 <body>
-    <style>
-        body {
-      background-image: url('./img/55448.png');
-      background-repeat: no-repeat;
-      background-size: cover;
-      font-family: sans-serif;
-      background-attachment: fixed;
-    }
-    </style>
-    <h1  style="color: rgb(13, 103, 177);">Preguntas, inquetudes, comentarios?</h1>
 
-       
-        <label for="" class="txt" style="color: rgb(13, 103, 177);">Asunto</label>
-        <input type="text" id="Nombres" name="nombres"style="border: 2px solid rgb(103, 103, 214); border-radius: 8px;" >
-        <br>
-        <label for=""  style="color: rgb(13, 103, 177); font-family:Roboto Mono, monospace;font-size: 20px;"> Desea adjuntar archivos? </label>
-        <input type="file" name="file">
-        <br>
-        <label for="" class="txt" style="color: rgb(13, 103, 177);">Descripcion</label>
-        <textarea name="Descripcion" id="" style="border: 2px solid rgb(103, 103, 214); border-radius: 8px;"></textarea>
-        <br>
-         <label for="" class="txt" style="color: rgb(13, 103, 177);">podemos contactarlo?, dejenos su email o numero de contacto</label>
-        <input type="text" id="Nombres" name="nombres"style="border: 2px solid rgb(103, 103, 214); border-radius: 8px;">
-        <br>
-        <div class="container">
-        <input class="but" type="submit" value="Enviar">
-     </div>
+  <h1 class="center-align">¿Preguntas, inquietudes, comentarios?</h1>
 
- </div>
+  <div class="container">
+    <div class="form-container card-panel z-depth-3">
+
+      <div class="input-field">
+        <input type="text" id="asunto" name="asunto" />
+        <label for="asunto">Asunto</label>
+      </div>
+
+      <div class="file-field input-field">
+        <div class="btn teal">
+          <span>Adjuntar</span>
+          <input type="file" name="file" />
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Sube uno o más archivos" />
+        </div>
+      </div>
+
+      <div class="input-field">
+        <textarea id="descripcion" name="descripcion" class="materialize-textarea"></textarea>
+        <label for="descripcion">Descripción</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="contacto" name="contacto" />
+        <label for="contacto">Email o número de contacto</label>
+      </div>
+
+      <div class="center-align">
+        <button class="btn waves-effect waves-light btn-custom" type="submit" name="action">
+          Enviar
+          <i class="material-icons right"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Contáctanos</h5>
+          <p class="grey-text text-lighten-4">Estamos aquí para ayudarte. No dudes en escribirnos.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Síguenos</h5>
+          <ul>
+  <li>
+    <a class="grey-text text-lighten-3" href="#">
+      <i class="fab fa-facebook left"></i>Facebook
+    </a>
+  </li>
+  <li>
+    <a class="grey-text text-lighten-3" href="#">
+      <i class="fab fa-instagram left"></i>Instagram
+    </a>
+  </li>
+  <li>
+    <a class="grey-text text-lighten-3" href="#">
+      <i class="fas fa-envelope left"></i>Correo
+    </a>
+  </li>
+  <li>
+  <a class="grey-text text-lighten-3" href="#" target="_blank">
+    <i class="fab fa-whatsapp left"></i>WhatsApp
+  </a>
+</li>
+
+</ul>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container center-align">
+        © 2025 Designed by : Onix.dev
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>

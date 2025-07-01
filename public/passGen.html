@@ -1,20 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Contraseñas</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
-        button { padding: 10px; font-size: 16px; cursor: pointer; }
-        #password { font-size: 18px; margin-top: 20px; font-weight: bold; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generador de Contraseñas</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f4f4f4;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #096B68;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #129990;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #043331;
+    }
+
+    #password {
+      font-size: 18px;
+      margin-top: 30px;
+      font-weight: bold;
+      color: #2A4759;
+      word-break: break-word;
+    }
+  </style>
 </head>
 <body>
 
+  <div class="container">
     <h1>Generador de Contraseñas Seguras</h1>
     <button id="generateBtn">Generar Contraseña</button>
     <p id="password">Aquí aparecerá tu contraseña</p>
+  </div>
 
     <script>
         document.getElementById("generateBtn").addEventListener("click", async () => {
