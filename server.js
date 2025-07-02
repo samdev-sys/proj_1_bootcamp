@@ -45,37 +45,58 @@ app.get("/tasks/one/:id", (req, res) => {
 
 
 // CRUD para users
-app.post('/users',upload.single("foto"), async (req,res) =>{
-  try{const { nombre,usuario, email,password, pregunta, respuesta} =req.body;
-    const imagen =req.file;
-    if(!nombre || !usuario || !email || !password || !pregunta || !respuesta ){
-      return res.status(400).json({message:"faltan datos "});
+app.post('/users', upload.single("foto"), (req, res) => {
+  try {
+    const { nombre, usuario, email, password, pregunta, respuesta } = req.body;
+    const imagen = req.file;
+
+    // Validación de campos obligatorios
+    const camposFaltantes = [];
+    if (!nombre) camposFaltantes.push("nombre");
+    if (!usuario) camposFaltantes.push("usuario");
+    if (!email) camposFaltantes.push("email");
+    if (!password) camposFaltantes.push("password");
+    if (!pregunta) camposFaltantes.push("pregunta");
+    if (!respuesta) camposFaltantes.push("respuesta");
+
+    if (camposFaltantes.length > 0) {
+      return res.status(400).json({
+        message: "Faltan datos obligatorios",
+        campos: camposFaltantes
+      });
     }
-     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Validación de formato de correo
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ message: "Email no válido" });
     }
+    
 
-    // Validación de longitud de la contraseña
-    if (password.length < 6) {
-      return res.status(400).json({ message: "La contraseña debe tener al menos 6 caracteres" });
-    }
+    // Nombre de archivo si se envió imagen (opcional)
+    const nombreFoto = imagen?.filename || null;
 
-    // Encriptar la contraseña
-    const sql = 'INSERT INTO users (nombre, usuario, email, password, pregunta, respuesta) VALUES (?, ?, ?, ?, ?, ?)';
-    const values= [nombre, usuario, email, password, pregunta, respuesta];
+    const sql = `
+      INSERT INTO users (nombre, usuario, email, password, pregunta, respuesta, foto)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `;
+    const values = [nombre, usuario, email, password, pregunta, respuesta, nombreFoto];
+
     db.query(sql, values, (err, result) => {
-    if (err) {
-      console.error("Error al registra usuario:", err);
-      return res.status(500).json({message:"Error interno al registrar usuario"});
-    }
-    res.status(201).json({message: "usuario registrado exitosamente"});
-  });
-  }catch(error){
-    console.error("Error general:", error);
-    res.status(500).json({ message: "Error al procesar solicitud de registro" });
+      if (err) {
+        console.error("🛑 Error al registrar usuario:", err.code, err.sqlMessage);
+        return res.status(500).json({ message: "Error interno al registrar usuario" });
+      }
+
+      res.status(201).json({ message: "Usuario registrado exitosamente" });
+    });
+
+  } catch (error) {
+    console.error("🔥 Error general:", error.message);
+    res.status(500).json({ message: "Error al procesar la solicitud" });
   }
 });
+
 
 
 app.get('/users', (req,res)=>{
@@ -237,20 +258,46 @@ app.delete('/tasks/:id', (req, res)=>{
 });
 
 // validacion de usuarios
-app.post('/login',(req,res)=> {
-    console.log('Datos recibidos:', req.body);
-    const {user,password}=req.body;
+app.post('/login', (req, res) => {
+  const { user, password } = req.body;
 
-    const sql ='SELECT *FROM users WHERE usuario =? AND password=?';
-    db.query(sql,[user,password],(err,results)=>{
-        if (err) return res.status (500).json({error:'Error en el servidor'});
-        if(results.length >0){
-            res.json({success: true, message:'Inicio se sesion correcto', user:results[0]});
-        }else{
-            res.json({success:false,message:'usuario o password incorrecta'});
-        }
+  if (!user || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "Usuario y contraseña son obligatorios"
     });
+  }
+
+  const sql = 'SELECT * FROM users WHERE usuario = ? AND password = ?';
+
+  db.query(sql, [user, password], (err, results) => {
+    if (err) {
+      console.error("🛑 Error en el login:", err);
+      return res.status(500).json({
+        success: false,
+        message: "Error interno del servidor"
+      });
+    }
+
+    if (results.length > 0) {
+      const userData = results[0];
+      res.json({
+        success: true,
+        message: "Inicio de sesión correcto",
+        user: {
+          id: userData.id,
+          usuario: userData.usuario,
+        }
+      });
+    } else {
+      res.json({
+        success: false,
+        message: "Usuario o contraseña incorrecta"
+      });
+    }
+  });
 });
+
 // CRUD URLS
 
 // guardar urls
