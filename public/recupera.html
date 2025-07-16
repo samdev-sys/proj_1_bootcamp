@@ -38,6 +38,8 @@
     <div class="container">
         <h1>Recuperar Contraseña</h1>
         <form action="/recuperar" method="post">
+            <label for="user" class="txt">Ingrese su nombre se Usuario</label>
+            <input type="text" id="user" name="user" required>
             <label for="email" class="txt">Ingrese su Email para enviar el enlace de recuperación</label>
             <input type="email" id="email" name="email" required>
             
@@ -58,5 +60,7 @@
             <button type="submit" class="btn waves-effect waves-light">Enviar</button>
         </form>
     </div>
+
+    
 </body>
 </html>

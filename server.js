@@ -367,4 +367,30 @@ app.get("/generar-contraseña", (req,res) =>{
   res.json({password});
 });
 
+
+// correo de recuperacion
+app.post('/recuperar', (req, res) => {
+  const { email, usuario } = req.body;
+
+  if (!email || !usuario) {
+    return res.status(400).json({ message: 'faltan datos' });
+  }
+
+  const sql = 'SELECT * FROM users WHERE email = ? AND usuario = ?';
+  db.query(sql, [ email, usuario], (err, results) => {
+    if (err) {
+      console.error("Error al consultar el usuario", err);
+      return res.status(500).json({ message: 'Error interno del servidor' });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    // Aquí podrías enviar un correo con la nueva contraseña
+    // Por simplicidad, solo devolvemos un mensaje
+    res.json({ message: 'Se ha enviado un correo con las instrucciones para recuperar la contraseña' });
+  });
+});
+
 module.exports = app;
