@@ -8,6 +8,7 @@
   <link rel="shortcut icon" href="./img/ChatGPT Image 22 may 2025, 08_43_12 p.m_logo..png" type="image/x-icon" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+ 
   <style>
     body {
       background-color: rgb(206, 206, 227);
@@ -38,15 +39,16 @@
   </div>
 
   <div class="container">
-    <form action="http://localhost:3000/users" method="post" enctype="multipart/form-data" id="registroForm">
+    <form  enctype="multipart/form-data" id="registroForm">
       <h1>REGISTRAR USUARIO</h1>
 
       <label class="txt">Nombres</label>
       <input type="text" id="nombres" name="nombre" required />
 
       <label class="txt">Sube tu foto</label>
-      <input type="file" name="foto" />
-
+      <input type="file" name="foto" id="foto" />
+      <br>
+      <br>
       <label class="txt">Usuario</label>
       <input type="text" id="usuario" name="usuario" required />
 
@@ -78,44 +80,27 @@
       </div>
     </form>
   </div>
+  <div id="loader" style="display: none;" class="center-align">
+  <div class="preloader-wrapper small active">
+    <div class="spinner-layer spinner-green-only">
+      <div class="circle-clipper left"><div class="circle"></div></div>
+      <div class="gap-patch"><div class="circle"></div></div>
+      <div class="circle-clipper right"><div class="circle"></div></div>
+    </div>
+  </div>
+  <p class="grey-text">Registrando...</p>
+</div>
+
 
   <!-- Materialize JS -->
+    <script src="./script.js"defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      M.FormSelect.init(document.querySelectorAll("select"));
-      M.Slider.init(document.querySelectorAll(".slider"));
-
-      const passwordInput = document.getElementById("password");
-      const passwordResult = document.getElementById("passwordResult");
-      const generateBtn = document.getElementById("generatePass");
-
-      if (generateBtn) {
-        generateBtn.addEventListener("click", async (e) => {
-          e.preventDefault();
-
-          try {
-            const response = await fetch("http://localhost:3000/generar-contraseña");
-            if (!response.ok) throw new Error("Error al generar contraseña");
-
-            const data = await response.json();
-
-            if (passwordInput) passwordInput.value = data.password;
-            if (passwordResult) {
-              passwordResult.textContent = `Contraseña generada: ${data.password}`;
-              passwordResult.classList.remove("red-text");
-            }
-          } catch (err) {
-            console.error("Error:", err.message);
-            if (passwordResult) {
-              passwordResult.textContent = "No se pudo generar la contraseña";
-              passwordResult.classList.add("red-text");
-            }
-          }
-        });
-      }
-    });
-  </script>
+ <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems);
+  });
+</script>
 </body>
 </html>

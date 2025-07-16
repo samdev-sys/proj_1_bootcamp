@@ -348,59 +348,95 @@ async function eliminarTarea(id){
 }
 
 // registrar usuario
-document.addEventListener ("DOMContentLoaded", function (){
+document.addEventListener("DOMContentLoaded", () => {
   M.FormSelect.init(document.querySelectorAll("select"));
-  M.Slider.init(document.querySelectorAll(".slider"),{
+  M.Slider.init(document.querySelectorAll(".slider"), {
     indicators: true,
-    height:400,
-    interval:5000
+    height: 400,
+    interval: 5000
   });
 
-  const form = document.querySelector("form");
-  const nombre = document.getElementById("Nombres");
-  const usuario = document.querySelector("input[type='text']:nth-of-type(2)");
-  const email = document.querySelector("input[type='email']");
-  const password = document.querySelector("input[type='password']");
+  const form = document.getElementById("registroForm");
+  const nombre = document.getElementById("nombres");
+  const usuario = document.getElementById("usuario");
+  const email = document.getElementById("email");
+  const password = document.getElementById("password");
   const pregunta = document.getElementById("pregunta");
-  const respuesta = document.querySelector("input[type='text']:last-of-type");
-  const foto = document.querySelector("input[type='file']");
+  const respuesta = document.getElementById("respuesta");
+  const foto = document.getElementById("foto");
+  const loader = document.getElementById("loader");
 
-  form.addEventListener("submit", async function(e){
-    if(!nombre.value || !usuario.value || !email.value || !password.value || !pregunta.value || !respuesta.value){
-      alert("completa los campos")
+  const campos = [nombre, usuario, email, password, pregunta, respuesta];
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    let incompletos = [];
+
+    campos.forEach(campo => {
+      campo.classList.remove("error-field");
+      if (!campo.value.trim()) {
+        campo.classList.add("error-field");
+        incompletos.push(campo.name || campo.id);
+      }
+    });
+
+    if (incompletos.length > 0) {
+      M.toast({
+        html: `<i class="material-icons left">warning</i> Completa todos los campos`,
+        classes: "orange darken-3 white-text rounded"
+      });
       return;
     }
+
     const formData = new FormData(form);
+    loader.style.display = "block";
 
-    try{
-        const res = await fetch("http://localhost:3000/users",{
-        method : "POST",
-        body : formData
+    try {
+      const res = await fetch("http://localhost:3000/users", {
+        method: "POST",
+        body: formData
       });
-      const data = await res.json();
-      alert (data.message);
-      if(res.ok){
-        M.toast ({
-          html:`<i class="material-icons left">check_circle</i> ${data.message}`,
-          classes :"green darken-2 white-text rounded",
-          displayLength: 4000
+
+      const rawBody = await res.text();
+      let data;
+
+      try {
+        data = JSON.parse(rawBody);
+      } catch {
+        loader.style.display = "none";
+        console.error("❌ Respuesta inesperada del servidor:", rawBody);
+        M.toast({
+          html: `<i class="material-icons left">cloud_off</i> Servidor respondió contenido no esperado`,
+          classes: "red darken-4 white-text rounded"
         });
-        form.reset();
-
-      }else {
-         M.toast({
-    html: `<i class="material-icons left">error</i> ${data.message || "Error en el registro"}`,
-    classes: "red darken-2 white-text rounded",
-    displayLength: 4000
-  });
+        return;
       }
-    }
-    catch (err){
-      console.error ( "Error  al registrar usuario", err);
-      alert("Error de conexion con el servidor");
+
+      loader.style.display = "none";
+
+      if (res.ok) {
+        form.reset();
+        M.toast({
+          html: `<i class="material-icons left">check_circle</i> ${data.message}`,
+          classes: "green darken-2 white-text rounded"
+        });
+      } else {
+        M.toast({
+          html: `<i class="material-icons left">error</i> ${data.message || "Error en el registro"}`,
+          classes: "red darken-2 white-text rounded"
+        });
+      }
+    } catch (err) {
+      loader.style.display = "none";
+      console.error("🔥 Error al registrar usuario:", err);
+      M.toast({
+        html: `<i class="material-icons left">cloud_off</i> No se pudo conectar con el servidor`,
+        classes: "red darken-4 white-text rounded"
+      });
     }
   });
-
-
-
 });
+
+
+
