@@ -15,5 +15,6 @@ db.connect(err => {
     console.log('✅ Conectado a MySQL en Railway');
   }
 });
+console.log('📦 Base de datos seleccionada:', process.env.MYSQLDATABASE);
 
 module.exports = db;
