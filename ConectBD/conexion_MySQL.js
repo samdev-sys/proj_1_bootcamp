@@ -1,4 +1,3 @@
-
 const mysql = require('mysql2');
 
 const db = mysql.createConnection({
@@ -16,4 +15,5 @@ db.connect(err => {
     console.log('✅ Conectado a MySQL en Railway');
   }
 });
-module.exports=conexion;
+
+module.exports = db;
