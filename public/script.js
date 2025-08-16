@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   displayUrls(userId);
   displayTasks(userId);
 }
+const BASE_URL = "https://taskflow-uk9a.onrender.com";
 
 
   // 🔑 Login
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("passwordLog")?.value.trim();
 
       try {
-        const response = await fetch("http://localhost:3000/login", {
+        const response = await fetch(`${BASE_URL}/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ user, password })
@@ -95,7 +96,7 @@ async function saveUrl(userId) {
 
   try {
     console.log("Insertando:", url);
-    const response = await fetch("http://localhost:3000/urls", {
+    const response = await fetch(`${BASE_URL}/urls`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, url })
@@ -120,7 +121,7 @@ async function saveUrl(userId) {
 async function displayUrls(userId) {
   // console.log("renderizando urls para:", userId);
   try {
-    const response = await fetch(`http://localhost:3000/urls/${userId}`);
+    const response = await fetch(`${BASE_URL}/urls/${userId}`);
     const urls = await response.json();
     console.log("Respuesta del backend:", urls);
     const container = document.getElementById("iconsContainer");
@@ -154,24 +155,6 @@ async function displayUrls(userId) {
   container.appendChild(card);
 });
 
-
-    urls.forEach(({ url }) => {
-      const card = document.createElement("div");
-      card.className = "card blue-grey darken-1 white-text hoverable";
-      card.innerHTML = `
-        <div class="card-content">
-          <span class="card-title"><i class="material-icons left">link</i>URL</span>
-          <p style="word-wrap: break-word;"><a href="${url}" target="_blank" class="yellow-text text-lighten-3">${url}</a></p>
-        </div>
-        <div class="card-action">
-        <button class="btn red" onclick="deleteUrl(${id})">
-          <i  class="material-icons">delete</i>
-        </button>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-
   } catch (err) {
     console.error("Error al cargar URLs:", err.message);
   }
@@ -182,7 +165,7 @@ async function deleteUrl(id) {
   const confirmDelete = confirm("Estas seguro de eliminar?");
   if (!confirmDelete) return;
    try{
-    const response = await fetch(`http://localhost:3000/urls/${id}`,{
+    const response = await fetch(`${BASE_URL}/urls/${id}`,{
       method:"DELETE"
     });
 
@@ -204,7 +187,7 @@ async function deleteUrl(id) {
 
 async function displayTasks(userId) {
   try {
-    const response = await fetch(`http://localhost:3000/tasks/${userId}`);
+    const response = await fetch(`${BASE_URL}/tasks/${userId}`);
     const tasks = await response.json();
     console.log("📦 Tareas recibidas del backend:", tasks);
 
@@ -263,8 +246,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const editingId=taskForm.getAttribute("data-editing-id");
       const url=editingId
-       ?`http://localhost:3000/tasks/${editingId}`
-       :"http://localhost:3000/tasks";
+       ?`${BASE_URL}/tasks/${editingId}`
+       :`${BASE_URL}/tasks`;
       const method =editingId ?"PUT":"POST";
 
       try {
@@ -304,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // ACTUALIZAR TAREA
 async function actualizarTarea(id){
   try {
-    const response =await fetch(`http://localhost:3000/tasks/one/${id}`);
+    const response =await fetch(`${BASE_URL}/tasks/one/${id}`);
     const tarea =await response.json();
 
     document.getElementById("asunto").value=tarea.asunto;
@@ -330,7 +313,7 @@ async function eliminarTarea(id){
   if(!confirmacion) return;
 
   try{
-    const response = await fetch(`http://localhost:3000/tasks/${id}`,{
+    const response = await fetch(`${BASE_URL}/tasks/${id}`,{
       method:"DELETE"
     });
 
@@ -393,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loader.style.display = "block";
 
     try {
-      const res = await fetch("http://localhost:3000/users", {
+      const res = await fetch(`${BASE_URL}/users`, {
         method: "POST",
         body: formData
       });
