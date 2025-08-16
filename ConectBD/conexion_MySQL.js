@@ -1,22 +1,19 @@
 
-const mysql= require('mysql2');
+const mysql = require('mysql2');
 
-const conexion =mysql.createConnection({
-    host : '127.0.0.1',
-    port:'3307',
-    user:'root',
-    password:'',
-    database:'001_app',
-    
-})
-
-conexion.connect((err)=>{
-    if(err)  {
-        console.error('❌ Error de conexión:', err.stack);
-        return;
-    }
-    console.log('🟢 Conectado a MySQL en el puerto 3307');
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME
 });
 
-
+db.connect(err => {
+  if (err) {
+    console.error('❌ Error de conexión:', err);
+  } else {
+    console.log('✅ Conectado a MySQL en Railway');
+  }
+});
 module.exports=conexion;
