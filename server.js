@@ -10,7 +10,7 @@ const multer =require("multer");
 const upload= multer({dest:"uploads/"});
 
 
-const PORT =3000;
+const PORT =process.env.PORT|| 3000;
 
 
 app.use (express.json());
@@ -19,7 +19,9 @@ app.use (cors());
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}));
 
-
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
+});
 
 
 
