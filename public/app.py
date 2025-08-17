@@ -1,27 +1,14 @@
-import streamlit  as st
-import string 
-import random 
+import streamlit as st
+import string
+import random
 
+st.set_page_config(page_title="Generador de Contraseñas", page_icon="🔐")
 
-st.title("Generador de contraseñas")
+st.title("🔐 Generador de contraseñas seguras")
 
-passlen = st.number_input("longitud  de la contraseña", min_value=1,step=1)
+passlen = st.number_input("Longitud de la contraseña", min_value=4, step=1, value=12)
 
-if st. button("Generar"):
-    
-    s1 = string.ascii_uppercase
-    s2 = string.ascii_lowercase
-    s3 = string.digits
-    s4 = string.punctuation
-
-    s = list(s1 + s2 + s3 + s4)
-    random.shuffle(s)
-
-    pas = "".join(s[:passlen])
-    st.success(f"Tu contraseña: {pas}")
-else:
-        st.error("La longitud de la contraseña debe ser mayor que 0")
-
-
-
-    
+if st.button("Generar"):
+    caracteres = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choices(caracteres, k=passlen))
+    st.success(f"Tu contraseña generada es:\n\n`{password}`")
