@@ -18,7 +18,7 @@
 
     <script>
         document.getElementById("generateBtn").addEventListener("click", async () => {
-            const response = await fetch("http://localhost:3000/generar-contraseña"); // Llama a la API de Node.js
+            const response = await fetch(`${BASE_URL}/Frontend/python_files/app.py`); // Llama a la API de Node.js
             const data = await response.json();
             document.getElementById("password").textContent = `Contraseña: ${data.password}`;
         });
