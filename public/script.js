@@ -17,6 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
   displayTasks(userId);
 }
 
+const currentPage = window.location.pathname;
+
+if (isPrivate && (!userId || isNaN(userId)) && currentPage !== "/index.html") {
+  window.location.replace("/index.html");
+  return;
+}
+
+
 
 const BASE_URL = "https://taskflow-uk9a.onrender.com";
 
