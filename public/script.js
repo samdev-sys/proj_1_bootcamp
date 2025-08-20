@@ -48,6 +48,7 @@ const BASE_URL = "https://taskflow-uk9a.onrender.com";
 
         if (result.success) {
           localStorage.setItem("userId", result.user.id);
+          localStorage.setItem("username",user);
           alert("Inicio de sesión exitoso");
           window.location.href = "/add_task.html";
         } else {
@@ -243,10 +244,17 @@ async function displayTasks(userId) {
 document.addEventListener("DOMContentLoaded", () => {
   const taskForm = document.getElementById("taskForm");
   const userId = parseInt(localStorage.getItem("userId"));
+  const username = localStorage.getItem("username");
 
   if (taskForm) {
     taskForm.addEventListener("submit", async (e) => {
       e.preventDefault();
+
+      if(username){
+        M.toast({html:"Usuario no identificado",classes:"red"});
+        return;
+      }
+    
       
       const asunto = document.getElementById("asunto").value.trim();
       const descripcion = document.getElementById("descripcion").value.trim();
@@ -266,6 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
           method,
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
+            user: username,
             user_id: userId,
             asunto,
             descripcion,
@@ -279,6 +288,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const result = await response.json();
 
         if (!response.ok) throw new Error(result.message || "Error al crear tarea");
+        if (!username) {
+  M.toast({ html: "Usuario no identificado", classes: "red" });
+  return;
+}
 
         M.toast({ html: "Tarea creada con éxito", classes: "green" });
         taskForm.reset();
