@@ -155,7 +155,7 @@ app.post("/tasks", (req, res) => {
   } = req.body;
 
   // Validación básica
-  if (!user_id || !asunto || !descripcion || !Estado) {
+  if (!user||!user_id || !asunto || !descripcion || !Estado) {
     return res.status(400).json({
       message: "Faltan campos requeridos: usuario, asunto, descripción o estado.",
     });
@@ -177,6 +177,9 @@ app.post("/tasks", (req, res) => {
     fecha_de_creacion || new Date().toISOString().slice(0, 19).replace("T", " "),
     Estado,
   ];
+  console.log("📥 Datos recibidos:", req.body);
+console.log("📦 Valores a insertar:", values);
+
 
   db.query(sql, values, (err, result) => {
     if (err) {
@@ -188,6 +191,11 @@ app.post("/tasks", (req, res) => {
       message: "Tarea creada correctamente",
       id_tarea: result.insertId,
     });
+    const estadosValidos = ["por_iniciar", "en_proceso", "finalizado"];
+if (!estadosValidos.includes(Estado)) {
+  return res.status(400).json({ message: "Estado inválido" });
+}
+
   });
 });
 
