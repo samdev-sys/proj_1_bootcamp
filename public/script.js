@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
     taskForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      if(username){
+      if(!username){
         M.toast({html:"Usuario no identificado",classes:"red"});
         return;
       }
@@ -288,10 +288,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const result = await response.json();
 
         if (!response.ok) throw new Error(result.message || "Error al crear tarea");
-        if (!username) {
-  M.toast({ html: "Usuario no identificado", classes: "red" });
-  return;
-}
 
         M.toast({ html: "Tarea creada con éxito", classes: "green" });
         taskForm.reset();
