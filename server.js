@@ -163,8 +163,8 @@ app.post("/tasks", (req, res) => {
 
   const sql = `
     INSERT INTO tasks (
-      user,user_id, asunto, descripcion, store_URL, tipo_archivo, fecha_de_creacion, Estado
-    ) VALUES (?, ?, ?, ?, ?, ?, ?)
+      user,user_id, asunto, descripcion, store_URL, tipo_archivo, fecha_de_creacion, estado
+    ) VALUES (?, ?, ?, ?, ?, ?, ?,?)
   `;
 
   const values = [
