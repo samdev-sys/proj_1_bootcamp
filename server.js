@@ -144,6 +144,7 @@ app.delete('/users/:id', (req, res)=>{
 
 app.post("/tasks", (req, res) => {
   const {
+    user,
     user_id,
     asunto,
     descripcion,
@@ -162,11 +163,12 @@ app.post("/tasks", (req, res) => {
 
   const sql = `
     INSERT INTO tasks (
-      user_id, asunto, descripcion, store_URL, tipo_archivo, fecha_de_creacion, Estado
+      user,user_id, asunto, descripcion, store_URL, tipo_archivo, fecha_de_creacion, Estado
     ) VALUES (?, ?, ?, ?, ?, ?, ?)
   `;
 
   const values = [
+    user,
     user_id,
     asunto,
     descripcion,
