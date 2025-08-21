@@ -203,7 +203,7 @@ app.get("/tasks/:userId", (req, res) => {
   const { userId } = req.params;
 
   const sql = `
-    SELECT id_tarea, asunto, descripcion, Estado
+    SELECT id_tarea, asunto, descripcion, estado AS Estado
     FROM tasks
     WHERE user_id = ?
   `;

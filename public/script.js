@@ -225,9 +225,9 @@ async function displayTasks(userId) {
   </button>
       `;
 
-      const estado = Estado?.toLowerCase();
+      const estado = Estado?.toLowerCase()||"pendiente";
 
-      if (estado === "en proceso") {
+      if (["en proceso ", "en_proceso"].includes(estado)) {
         enproceso.appendChild(card);
       } else if (["pendiente", "por iniciar"].includes(estado)) {
         pendientes.appendChild(card);
