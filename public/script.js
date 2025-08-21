@@ -229,7 +229,7 @@ async function displayTasks(userId) {
 
       if (["en proceso ", "en_proceso"].includes(estado)) {
         enproceso.appendChild(card);
-      } else if (["pendiente", "por iniciar"].includes(estado)) {
+      } else if (["pendiente", "por_iniciar"].includes(estado)) {
         pendientes.appendChild(card);
       } else if (estado === "finalizado") {
         finalizado.appendChild(card);
