@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 🔐 Protección de página privada
   if (isPrivate && (!userId || isNaN(userId))) {
-    window.location.replace("/index.html");
+    window.location.replace("/add_task.html");
     displayUrls(userId);
     displayTasks(userId);
     return;
