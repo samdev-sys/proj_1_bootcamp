@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentPage =window.location.pathname;
   if (isPrivate){
     if (!userId || isNaN(userId)){
-      if (currentPage !=="/index.html"){
+      if (currentPage !=="/index.html" && currentPage !=="/"){
         window.location.replace("/index.html");
       }
       return;
