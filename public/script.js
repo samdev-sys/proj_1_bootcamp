@@ -6,24 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const userId = parseInt(localStorage.getItem("userId"));
 
   // 🔐 Protección de página privada
-  if (isPrivate && (!userId || isNaN(userId))) {
-    window.location.replace("/add_task.html");
-    displayUrls(userId);
-    displayTasks(userId);
-    return;
+  const currentPage =window.location.pathname;
+  if (isPrivate){
+    if (!userId || isNaN(userId)){
+      if (currentPage !=="/index.html"){
+        window.location.replace("/index.html");
+      }
+      return;
+
+    }else{
+      displayTasks(userId);
+      displayUrls(userId);
+    }
   }
-  if (isPrivate && !isNaN(userId)) {
-  displayUrls(userId);
-  displayTasks(userId);
-}
-
-const currentPage = window.location.pathname;
-
-if (isPrivate && (!userId || isNaN(userId)) && currentPage !== "/index.html") {
-  window.location.replace("/index.html");
-  return;
-}
-
 
 
 const BASE_URL = "https://taskflow-uk9a.onrender.com";
