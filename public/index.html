@@ -25,7 +25,7 @@
         
     </style>
 </head>
-<body data- private="false"> 
+<body data-private="false"> 
   <header>
     <nav class="blue darken-1">
 <div class="nav-wrapper">
@@ -59,8 +59,7 @@
       </button>
     </div>  
   </form>
-  <script src="/config.js"></script>
-<script src="/script.js"></script>
+ 
 </div>
 </div> 
 </div>
@@ -103,7 +102,7 @@
       <div class="card-panel teal">
         <span class="white-text">Con taskFlow sus  proyectos y tareas tendran una eficiencia del 70%,gracias a la integracion de herramientas de IA y python.compruebelo!!
         </span>
-         <button class="btn waves-effect waves-light" type="submit" name="action"><a href="./Register.html" style="color: aliceblue;">Registrarse</a>
+        <a href="./Register.html" class="btn waves-effect waves-light" style="color:aliceblue;">REGISTRARSE</a>
         <i class="material-icons right">input</i>
       </button>
       </div>
@@ -117,18 +116,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <script>
-     document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.slider');
-    var instances = M.Slider.init(elems, {});
-  });
-
-   document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems, {});
-  });
-  
-   
-
+    document,addEventListener('DOMContentLoaded',function(){
+      M.Slider.init(document.querySelectorAll('.slider'),{});
+      M.Modal.init(document.querySelectorAll('.modal'),{});
+    });
   </script>
 
 <footer class="footer">
@@ -138,7 +129,8 @@
                      
                    
 </footer>
-        
+ <script src="/config.js"></script>
+<script src="/script.js"></script>        
 </body>
 
 </html>
