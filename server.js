@@ -177,8 +177,8 @@ app.post("/tasks", (req, res) => {
     fecha_de_creacion || new Date().toISOString().slice(0, 19).replace("T", " "),
     Estado,
   ];
-  console.log("📥 Datos recibidos:", req.body);
-console.log("📦 Valores a insertar:", values);
+//   console.log("📥 Datos recibidos:", req.body);
+// console.log("📦 Valores a insertar:", values);
 
 
   db.query(sql, values, (err, result) => {
@@ -210,7 +210,7 @@ app.get("/tasks/:userId", (req, res) => {
 
   db.query(sql, [userId], (err, rows) => {
     if (err) {
-      console.error("Error al obtener tareas:", err);
+      // console.error("Error al obtener tareas:", err);
       return res.status(500).json({ message: "Error al consultar las tareas" });
     }
 
@@ -247,7 +247,7 @@ app.put('/tasks/:id', (req, res) => {
     
   db.query(sql, values, (err, result) => {
     if (err) {
-      console.error("Error al actualizar tarea:", err);
+      // console.error("Error al actualizar tarea:", err);
       return res.status(500).json({ message: "Error interno al actualizar tarea." });
     }
 
@@ -287,7 +287,7 @@ app.post('/login', (req, res) => {
 
   db.query(sql, [user, password], (err, results) => {
     if (err) {
-      console.error("🛑 Error en el login:", err);
+      // console.error("🛑 Error en el login:", err);
       return res.status(500).json({
         success: false,
         message: "Error interno del servidor"
@@ -323,7 +323,7 @@ app.post('/urls', (req, res) => {
   }
 
   const checkUser = "SELECT id FROM users WHERE id = ?";
-  console.log("Insertando URL:", url, "para userId:", userId);
+  // console.log("Insertando URL:", url, "para userId:", userId);
 
   db.query(checkUser, [userId], (err, result) => {
     if (err) return res.status(500).json({ error: err });
@@ -332,7 +332,7 @@ app.post('/urls', (req, res) => {
     }
 
     const insert = "INSERT INTO urls (url, user_id) VALUES (?, ?)";
-    console.log("Intentando guardar:", { url, userId });
+    // console.log("Intentando guardar:", { url, userId });
     db.query(insert, [url, userId], (err2) => {
       if (err2) {
   console.error("Error MySQL al insertar:", err2);
@@ -371,7 +371,7 @@ app.delete('/urls/:id', (req, res) => {
 if (require.main === module){
   const PORT = process.env.PORT || 3000 ;
   app.listen(PORT, () =>{
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    // console.log(`Servidor corriendo en http://localhost:${PORT}`);
   })
 }
 
