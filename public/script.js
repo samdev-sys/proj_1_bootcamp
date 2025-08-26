@@ -3,8 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveBtn = document.getElementById("saveUrlBtn");
   const logoutBtn = document.getElementById("logoutBtn");
   const isPrivate = document.body.getAttribute("data-private") === "true";
-  const userId = rawUserId && !isNaN(parseInt(rawUserId)) ? parseInt(rawUserId) : null;
   const rawUserId = localStorage.getItem("userId");
+  const userId = rawUserId && !isNaN(parseInt(rawUserId)) ? parseInt(rawUserId) : null;
+  
 
 
   // 🔐 Protección de página privada
