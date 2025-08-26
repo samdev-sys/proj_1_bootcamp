@@ -1,15 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.getElementById("loginForm");
-  const saveBtn = document.getElementById("saveUrlBtn");
-  const logoutBtn = document.getElementById("logoutBtn");
-  const isPrivate = document.body.getAttribute("data-private") === "true";
-  const rawUserId = localStorage.getItem("userId");
-  const userId = rawUserId && !isNaN(parseInt(rawUserId)) ? parseInt(rawUserId) : null;
-  
+document.addEventListener("DOMContentLoaded",()=>{
+  const isPrivate=document.body.getAttribute("data-private")==="true";
+  const rawUserId=localStorage.getItem("userId");
+  const userId=rawUserId && !isNaN(parseInt(rawUserId))?parseInt(rawUserId):null;
 
 
-  // 🔐 Protección de página privada
-  
   const currentPage =window.location.pathname;
   if (isPrivate){
     if (!userId || isNaN(userId)){
@@ -23,6 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
       displayUrls(userId);
     }
   }
+})
+  
+  
 
 
 const BASE_URL = "https://taskflow-uk9a.onrender.com";
@@ -86,7 +83,6 @@ const BASE_URL = "https://taskflow-uk9a.onrender.com";
       window.location.replace("/index.html");
     });
   }
-});
 
 // 🧠 Verificación extra al volver atrás
 window.addEventListener("pageshow", (event) => {
