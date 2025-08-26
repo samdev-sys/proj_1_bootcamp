@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   }
 
   // 💾 Guardar URL
+  const saveBtn = document.getElementById("saveUrlBtn");
   if (saveBtn) {
     saveBtn.addEventListener("click", async () => {
       if (!userId || isNaN(userId)) {
