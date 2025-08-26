@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       displayUrls(userId);
     }
   }
-})
+
   
   
 
@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       window.location.replace("/index.html");
     });
   }
+  })
 
 // 🧠 Verificación extra al volver atrás
 window.addEventListener("pageshow", (event) => {
