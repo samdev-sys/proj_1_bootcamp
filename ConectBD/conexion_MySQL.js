@@ -9,9 +9,8 @@ const db = mysql.createConnection({
   password: process.env.MYSQLPASSWORD,
   database: process.env.MYSQLDATABASE,
   ssl:{
-    ca: fs.readFileSync(path.join(__dirname, 'ca.pem')),
-    rejectUnauthorized: true
-  }
+    ca:process.env.MYSQL_CA_CERT,
+  },
 });
 
 db.connect(err => {
