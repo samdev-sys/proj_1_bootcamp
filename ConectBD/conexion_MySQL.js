@@ -8,7 +8,7 @@ const db = mysql.createConnection({
   password: process.env.MYSQLPASSWORD,
   database: process.env.MYSQLDATABASE,
   ssl:{
-    ca: fs.readFileSync("C:/Users/user/Desktop/proj_1_bootcamp/ConectBD/ca.pem"),
+    ca: fs.readFileSync(path.join(__dirname, 'ca.pem')),
     rejectUnauthorized: true
   }
 });
