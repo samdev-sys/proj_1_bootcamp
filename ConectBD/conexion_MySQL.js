@@ -10,7 +10,7 @@ const db = mysql.createConnection({
   database: process.env.MYSQLDATABASE,
   ssl:{
     ca:process.env.MYSQL_CA_CERT,
-    rejectUnauthorized:true
+    rejectUnauthorized: false
   }
 });
 
