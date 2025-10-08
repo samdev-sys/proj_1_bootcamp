@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log("Archivo login.js activo y listo");
+    // console.log("Archivo login.js activo y listo");
 
     // Inicialización de MaterializeCSS
     var elems = document.querySelectorAll('.modal');
     if (elems.length > 0) {
         M.Modal.init(elems);
-        console.log("Modales inicializados correctamente.");
+        // console.log("Modales inicializados correctamente.");
     } else {
         console.error("No se encontraron elementos .modal en el DOM.");
     }

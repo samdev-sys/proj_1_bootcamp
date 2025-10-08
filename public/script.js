@@ -199,7 +199,7 @@ async function displayTasks(userId) {
   try {
     const response = await fetch(`${BASE_URL}/tasks/${userId}`);
     const tasks = await response.json();
-    console.log("📦 Tareas recibidas del backend:", tasks);
+    // console.log("📦 Tareas recibidas del backend:", tasks);
 
     const enproceso = document.getElementById("enproceso");
     const pendientes = document.getElementById("pendientes");
