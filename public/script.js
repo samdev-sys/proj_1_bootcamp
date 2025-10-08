@@ -133,7 +133,7 @@ async function displayUrls(userId) {
   try {
     const response = await fetch(`${BASE_URL}/urls/${userId}`);
     const urls = await response.json();
-    console.log("Respuesta del backend:", urls);
+    // console.log("Respuesta del backend:", urls);
     const container = document.getElementById("iconsContainer");
 
     if (!container) return;
