@@ -204,6 +204,7 @@ async function displayTasks(userId) {
     const enproceso = document.getElementById("enproceso");
     const pendientes = document.getElementById("pendientes");
     const finalizado = document.getElementById("finalizado");
+    if (!enproceso || !pendientes || !finalizado) {return};
 
     enproceso.innerHTML = "";
     pendientes.innerHTML = "";
