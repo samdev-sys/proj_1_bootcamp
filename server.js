@@ -1,26 +1,23 @@
 require('dotenv').config();
 
-
+const path = require('path');
 const express = require('express');
-const app= express();
-const cors =require('cors');
-const db=require('./ConectBD/conexion_MySQL');
-const bodyParser = require('body-parser');
-const multer =require("multer");
-const upload= multer({dest:"uploads/"});
+const app = express();
+const cors = require('cors');
+const db = require('./ConectBD/conexion_MySQL');
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
+const PORT = process.env.PORT || 3001;
 
-const PORT =process.env.PORT|| 3000;
-
-
-app.use (express.json());
-app.use (cors());
-
+app.use(express.json());
+app.use(cors());
 app.use(express.static('public'));
-app.use(express.urlencoded({extended:true}));
+app.use(express.static('frontend/dist'));
+app.use(express.urlencoded({ extended: true }));
 
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
 
 
@@ -368,21 +365,6 @@ app.delete('/urls/:id', (req, res) => {
 
 
 
-if (require.main === module){
-  const PORT = process.env.PORT || 3000 ;
-  app.listen(PORT, () =>{
-    // console.log(`Servidor corriendo en http://localhost:${PORT}`);
-  })
-}
-
-// get para genPass
-
-app.get("/generar-contraseña", (req,res) =>{
-  const password= genSecPass();
-  res.json({password});
-});
-
-
 // correo de recuperacion
 app.post('/recuperar', (req, res) => {
   const { email, usuario } = req.body;
@@ -406,6 +388,11 @@ app.post('/recuperar', (req, res) => {
     // Por simplicidad, solo devolvemos un mensaje
     res.json({ message: 'Se ha enviado un correo con las instrucciones para recuperar la contraseña' });
   });
+});
+
+// Catch-all: servir React frontend para rutas del cliente
+app.get('/{*splat}', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
 });
 
 module.exports = app;
