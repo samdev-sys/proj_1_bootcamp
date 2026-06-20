@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(cors());
 app.use(express.static('public'));
-app.use(express.static('frontend/dist'));
+app.use(express.static('Frontend/dist'));
 app.use(express.urlencoded({ extended: true }));
 
 app.listen(PORT, '0.0.0.0', () => {
@@ -392,7 +392,7 @@ app.post('/recuperar', (req, res) => {
 
 // Catch-all: servir React frontend para rutas del cliente
 app.get('/{*splat}', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'Frontend', 'dist', 'index.html'));
 });
 
 module.exports = app;
