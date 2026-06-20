@@ -1,84 +1,63 @@
 export default function Contacto() {
   return (
-    <div className="contact-bg">
-      <h1 className="center-align">¿Preguntas, inquietudes, comentarios?</h1>
+    <div className="min-h-screen bg-gradient-to-br from-white/90 to-cyan-50">
+      <div className="max-w-3xl mx-auto px-4 py-12">
+        <h1 className="text-3xl md:text-4xl font-bold text-teal-800 text-center mb-8">
+          ¿Preguntas, inquietudes, comentarios?
+        </h1>
 
-      <div className="container">
-        <div className="form-container card-panel z-depth-3">
-          <div className="input-field">
-            <input type="text" id="asunto" name="asunto" />
-            <label htmlFor="asunto">Asunto</label>
-          </div>
-
-          <div className="file-field input-field">
-            <div className="btn teal">
-              <span>Adjuntar</span>
-              <input type="file" name="file" />
+        <div className="bg-white rounded-2xl shadow-xl p-8">
+          <div className="space-y-4">
+            <div>
+              <label className="block text-teal-700 font-mono text-sm mb-1">Asunto</label>
+              <input type="text" className="w-full px-4 py-2 border-2 border-teal-200 rounded-lg focus:outline-none focus:border-teal-500" />
             </div>
-            <div className="file-path-wrapper">
-              <input className="file-path validate" type="text" placeholder="Sube uno o más archivos" />
+
+            <div>
+              <label className="block text-teal-700 font-mono text-sm mb-1">Adjuntar archivos</label>
+              <input type="file" multiple className="w-full px-4 py-2 border-2 border-teal-200 rounded-lg file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-teal-500 file:text-white" />
             </div>
-          </div>
 
-          <div className="input-field">
-            <textarea id="descripcion" name="descripcion" className="materialize-textarea"></textarea>
-            <label htmlFor="descripcion">Descripción</label>
-          </div>
+            <div>
+              <label className="block text-teal-700 font-mono text-sm mb-1">Descripción</label>
+              <textarea rows={4} className="w-full px-4 py-2 border-2 border-teal-200 rounded-lg focus:outline-none focus:border-teal-500 resize-none" />
+            </div>
 
-          <div className="input-field">
-            <input type="text" id="contacto" name="contacto" />
-            <label htmlFor="contacto">Email o número de contacto</label>
-          </div>
+            <div>
+              <label className="block text-teal-700 font-mono text-sm mb-1">Email o número de contacto</label>
+              <input type="text" className="w-full px-4 py-2 border-2 border-teal-200 rounded-lg focus:outline-none focus:border-teal-500" />
+            </div>
 
-          <div className="center-align">
-            <button className="btn waves-effect waves-light btn-custom" type="button">
-              Enviar
-              <i className="material-icons right"></i>
-            </button>
+            <div className="text-center pt-4">
+              <button className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-lg font-bold transition">
+                Enviar
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <footer className="page-footer">
-        <div className="container">
-          <div className="row">
-            <div className="col l6 s12">
-              <h5 className="white-text">Contáctanos</h5>
-              <p className="grey-text text-lighten-4">
-                Estamos aquí para ayudarte. No dudes en escribirnos.
-              </p>
+      {/* Footer */}
+      <footer className="bg-teal-800 text-white">
+        <div className="max-w-6xl mx-auto px-4 py-12">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-xl font-bold font-mono mb-3">Contáctanos</h3>
+              <p className="text-cyan-200">Estamos aquí para ayudarte. No dudes en escribirnos.</p>
             </div>
-            <div className="col l4 offset-l2 s12">
-              <h5 className="white-text">Síguenos</h5>
-              <ul>
-                <li>
-                  <a className="grey-text text-lighten-3" href="https://web.facebook.com/" target="_blank" rel="noreferrer">
-                    <i className="fab fa-facebook left"></i>Facebook
-                  </a>
-                </li>
-                <li>
-                  <a className="grey-text text-lighten-3" href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-                    <i className="fab fa-instagram left"></i>Instagram
-                  </a>
-                </li>
-                <li>
-                  <a className="grey-text text-lighten-3" href="https://outlook.live.com/mail/" target="_blank" rel="noreferrer">
-                    <i className="fas fa-envelope left"></i>Correo
-                  </a>
-                </li>
-                <li>
-                  <a className="grey-text text-lighten-3" href="https://chat.whatsapp.com/" target="_blank" rel="noreferrer">
-                    <i className="fab fa-whatsapp left"></i>WhatsApp
-                  </a>
-                </li>
+            <div>
+              <h3 className="text-xl font-bold font-mono mb-3">Síguenos</h3>
+              <ul className="space-y-2">
+                <li><a href="https://web.facebook.com/" target="_blank" rel="noreferrer" className="text-cyan-200 hover:text-white transition">Facebook</a></li>
+                <li><a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className="text-cyan-200 hover:text-white transition">Instagram</a></li>
+                <li><a href="https://outlook.live.com/mail/" target="_blank" rel="noreferrer" className="text-cyan-200 hover:text-white transition">Correo</a></li>
+                <li><a href="https://chat.whatsapp.com/" target="_blank" rel="noreferrer" className="text-cyan-200 hover:text-white transition">WhatsApp</a></li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="footer-copyright">
-          <div className="container center-align">
-            © 2025 Designed by : Onix.dev
-          </div>
+        <div className="bg-teal-900 py-4 text-center">
+          <p className="font-mono">© 2025 Designed by: Onix.dev</p>
         </div>
       </footer>
     </div>

@@ -1,17 +1,22 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   server: {
-    port: 5173,
+    port: 3001,
+    open: true,
+    hmr: {
+      overlay: true
+    },
     proxy: {
-      '/login': 'http://localhost:3001',
-      '/users': 'http://localhost:3001',
-      '/tasks': 'http://localhost:3001',
-      '/urls': 'http://localhost:3001',
-      '/recuperar': 'http://localhost:3001',
-      '/generar-contraseña': 'http://localhost:3001'
+      '/login': 'http://localhost:3002',
+      '/users': 'http://localhost:3002',
+      '/tasks': 'http://localhost:3002',
+      '/urls': 'http://localhost:3002',
+      '/recuperar': 'http://localhost:3002',
+      '/generar-contraseña': 'http://localhost:3002'
     }
   }
 })

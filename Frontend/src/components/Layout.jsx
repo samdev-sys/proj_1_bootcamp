@@ -1,15 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export default function Layout({ children }) {
-  const { username, logout } = useAuth()
+  const { logout } = useAuth()
   const navigate = useNavigate()
+  const modalRef = useRef(null)
 
-  useEffect(() => {
-    const elems = document.querySelectorAll('.modal')
-    window.M?.Modal.init(elems)
-  }, [])
+  const openModal = () => modalRef.current?.showModal()
+  const closeModal = () => modalRef.current?.close()
 
   const handleLogout = () => {
     logout()
@@ -17,62 +16,43 @@ export default function Layout({ children }) {
   }
 
   return (
-    <>
-      <nav>
-        <div className="nav-wrapper cyan darken-4">
-          <Link to="/tasks" className="brand-logo" style={{ display: 'flex', justifyContent: 'center' }}>
+    <div className="min-h-screen bg-gray-100">
+      <nav className="bg-cyan-700 text-white shadow-lg">
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+          <Link to="/tasks" className="text-xl font-bold tracking-wide">
             taskFlow
           </Link>
-          <ul id="nav-mobile" style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '16px' }}>
-            <li>
-              <Link to="/urls">
-                <img src="/icons8-menú-cuadrado-96.png" alt="apps" height="65px" />
-              </Link>
-            </li>
-            <li>
-              <a
-                href="#!"
-                onClick={(e) => {
-                  e.preventDefault()
-                  const modal = window.M?.Modal.getInstance(document.getElementById('logoutModal'))
-                  modal?.open()
-                }}
-              >
-                <img src="/icons8-salida.gif" height="65px" alt="Cerrar sesión" />
-              </a>
-            </li>
-          </ul>
+          <div className="flex items-center gap-4">
+            <Link to="/urls" className="hover:bg-cyan-600 p-2 rounded-lg transition">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
+            </Link>
+            <button onClick={openModal} className="hover:bg-cyan-600 p-2 rounded-lg transition">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+            </button>
+          </div>
         </div>
       </nav>
 
-      <div id="logoutModal" className="modal" style={{ borderRadius: '10px', overflow: 'hidden' }}>
-        <div className="modal-content" style={{ backgroundColor: '#01579b', paddingBottom: 0 }}>
-          <h4 style={{ color: '#fff' }}>¿Seguro que deseas cerrar sesión?</h4>
-          <p style={{ fontSize: '18px', color: '#bbdefb' }}>
-            Si cierras sesión, tendrás que volver a ingresar tus credenciales.
-          </p>
+      <dialog ref={modalRef} className="rounded-2xl shadow-2xl border-0 p-0 w-full max-w-md backdrop:bg-black/50">
+        <div className="bg-cyan-800 text-white p-6 rounded-t-2xl">
+          <h3 className="text-xl font-bold">¿Seguro que deseas cerrar sesión?</h3>
+          <p className="text-cyan-200 mt-2">Tendrás que volver a ingresar tus credenciales.</p>
         </div>
-        <div className="modal-footer" style={{ backgroundColor: '#01579b' }}>
-          <button
-            className="btn"
-            style={{ backgroundColor: '#006064', marginRight: '10px' }}
-            onClick={handleLogout}
-          >
-            Sí, cerrar sesión
-          </button>
-          <button
-            className="btn grey darken-2"
-            onClick={() => {
-              const modal = window.M?.Modal.getInstance(document.getElementById('logoutModal'))
-              modal?.close()
-            }}
-          >
+        <div className="bg-cyan-800 p-4 rounded-b-2xl flex justify-end gap-3">
+          <button onClick={closeModal} className="px-4 py-2 bg-gray-500 hover:bg-gray-600 rounded-lg transition text-white">
             Cancelar
           </button>
+          <button onClick={handleLogout} className="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 rounded-lg transition text-white">
+            Sí, cerrar sesión
+          </button>
         </div>
-      </div>
+      </dialog>
 
       <main>{children}</main>
-    </>
+    </div>
   )
 }
